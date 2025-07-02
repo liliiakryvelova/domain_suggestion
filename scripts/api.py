@@ -24,7 +24,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://liliiakryvelova.github.io"],  # or ["*"] for all origins (less secure)
+    allow_origins=["https://liliiakryvelova.github.io"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -110,6 +110,3 @@ Return your answer in strict JSON format, for example:
             "safe": random.choice([True, False]),
         }
 
-@app.options("/generate-domains")
-async def options_generate_domains(request: Request):
-    return {}
