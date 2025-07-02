@@ -38,6 +38,10 @@ class JudgeRequest(BaseModel):
     domain: str
     description: str
 
+@app.get("/")
+def root():
+    return {"message": "✅ Domain Suggestion API is live"}
+
 @app.post("/generate-domains")
 def generate_domains_api(req: DomainRequest):
     # Safety check using OpenAI Moderation
