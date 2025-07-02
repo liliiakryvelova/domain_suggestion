@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Domain Suggestion Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    input, textarea, button { margin: 0.5em 0; }
+    .result { margin-top: 1em; padding: 1em; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h1>Domain Suggestion LLM Demo</h1>
+  <h2>Generate Domains</h2>
+  <textarea id="desc" rows="2" cols="50" placeholder="Business description"></textarea><br>
+  <input id="num" type="number" min="1" max="10" value="3">
+  <button onclick="generateDomains()">Generate</button>
+  <div id="genResult" class="result"></div>
+
+  <h2>Judge Domain</h2>
+  <input id="domain" type="text" placeholder="Domain name"><br>
+  <input id="domainDesc" type="text" placeholder="Business description"><br>
+  <button onclick="judgeDomain()">Judge</button>
+  <div id="judgeResult" class="result"></div>
+
+  <script>
+    // Change this to your deployed API URL
+    const API_BASE = "https://your-api-url.com";
+
+    async function generateDomains() {
+      const desc = document.getElementById('desc').value;
+      const num = parseInt(document.getElementById('num').value, 10);
+      const res = await fetch(`${API_BASE}/generate-domains`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ business_description: desc, num_domains: num })
+      });
+      const data = await res.json();
+      document.getElementById('genResult').textContent = JSON.stringify(data, null, 2);
+    }
+
+    async function judgeDomain() {
+      const domain = document.getElementById('domain').value;
+      const desc = document.getElementById('domainDesc').value;
+      const res = await fetch(`${API_BASE}/judge-domain`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ domain, description: desc })
+      });
+      const data = await res.json();
+      document.getElementById('judgeResult').textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
