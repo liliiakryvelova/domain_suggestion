@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -109,3 +109,7 @@ Return your answer in strict JSON format, for example:
             "brandability": random.randint(0, 10),
             "safe": random.choice([True, False]),
         }
+
+@app.options("/generate-domains")
+async def options_generate_domains(request: Request):
+    return {}
