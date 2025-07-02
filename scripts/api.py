@@ -14,7 +14,7 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 client = openai.OpenAI(api_key=openai.api_key)
 
-MODEL_PATH = "sshleifer/tiny-gpt2"
+MODEL_PATH = "gpt2"
 tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
 model = AutoModelForCausalLM.from_pretrained(MODEL_PATH)
 device = "cuda" if torch.cuda.is_available() else "cpu"
