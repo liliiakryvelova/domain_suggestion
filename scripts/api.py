@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 import tiktoken
 import json
 import random
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -20,6 +21,14 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 model.to(device)
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://liliiakryvelova.github.io"],  # or ["*"] for all origins (less secure)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class DomainRequest(BaseModel):
     business_description: str
