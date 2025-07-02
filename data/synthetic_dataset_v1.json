@@ -1,0 +1,1601 @@
+[
+  {
+    "business_description": "AI SaaS startup for Gen Z customers",
+    "expected_domains": [
+      "aigensaas.net",
+      "genforsaas.org",
+      "zaisaas.net"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app with a global audience",
+    "expected_domains": [
+      "gamingwithmobile.org",
+      "gamingaudiencea.org",
+      "withaaudience.net"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center with a global audience",
+    "expected_domains": [
+      "mentalcounselingcenter.org",
+      "healthaudiencemental.org",
+      "centercounselingglobal.net"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup with a global audience",
+    "expected_domains": [
+      "audiencestartupsaas.net",
+      "awithstartup.net",
+      "aaiwith.com"
+    ]
+  },
+  {
+    "business_description": "online education platform in a small town",
+    "expected_domains": [
+      "educationplatformsmall.net",
+      "onlineplatforma.org",
+      "platformtownsmall.com"
+    ]
+  },
+  {
+    "business_description": "family law firm in downtown area",
+    "expected_domains": [
+      "areadowntownlaw.net",
+      "inareafamily.net",
+      "downtowninfirm.net"
+    ]
+  },
+  {
+    "business_description": "real estate agency in San Francisco",
+    "expected_domains": [
+      "realfranciscoestate.net",
+      "inestatesan.net",
+      "estatefranciscoagency.org"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center in downtown area",
+    "expected_domains": [
+      "downtownmentalarea.net",
+      "areaincounseling.net",
+      "inmentalhealth.com"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app targeting remote workers",
+    "expected_domains": [
+      "mobiletargetingapp.org",
+      "gamingappworkers.com",
+      "workersremotegaming.org"
+    ]
+  },
+  {
+    "business_description": "animal shelter nonprofit in a small town",
+    "expected_domains": [
+      "nonprofitinsmall.com",
+      "shelterain.net",
+      "townasmall.com"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand in a small town",
+    "expected_domains": [
+      "smalltownin.net",
+      "brandtownsmall.net",
+      "brandsmalltown.org"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup targeting remote workers",
+    "expected_domains": [
+      "targetingstartupai.com",
+      "targetingaistartup.com",
+      "workersremoteai.org"
+    ]
+  },
+  {
+    "business_description": "luxury skincare line in a beachside city",
+    "expected_domains": [
+      "lineabeachside.org",
+      "askincarecity.net",
+      "cityina.org"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup with a global audience",
+    "expected_domains": [
+      "awithglobal.com",
+      "globalaudiencewith.org",
+      "audiencesaasstartup.org"
+    ]
+  },
+  {
+    "business_description": "pet grooming service in downtown area",
+    "expected_domains": [
+      "servicedowntownin.com",
+      "areaindowntown.net",
+      "petgroomingservice.net"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup targeting remote workers",
+    "expected_domains": [
+      "startupaiworkers.com",
+      "workersremotetargeting.org",
+      "saasairemote.com"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app with a global audience",
+    "expected_domains": [
+      "withmobilea.org",
+      "gamingglobalwith.net",
+      "awithmobile.net"
+    ]
+  },
+  {
+    "business_description": "vegan bakery for Gen Z customers",
+    "expected_domains": [
+      "customersgenbakery.net",
+      "genforvegan.com",
+      "bakeryzfor.org"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop in San Francisco",
+    "expected_domains": [
+      "franciscoshopsan.net",
+      "organicsanshop.net",
+      "infranciscoshop.net"
+    ]
+  },
+  {
+    "business_description": "family law firm in a small town",
+    "expected_domains": [
+      "smalllawfamily.net",
+      "firmsmalllaw.com",
+      "inlawtown.org"
+    ]
+  },
+  {
+    "business_description": "real estate agency for Gen Z customers",
+    "expected_domains": [
+      "estatecustomersreal.net",
+      "agencyestatez.org",
+      "genestatefor.org"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup in a small town",
+    "expected_domains": [
+      "smallastartup.org",
+      "inaitown.net",
+      "aitownsaas.net"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop in a beachside city",
+    "expected_domains": [
+      "beachsidecityshop.net",
+      "shopcityorganic.org",
+      "organicabeachside.net"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center in a beachside city",
+    "expected_domains": [
+      "beachsideinhealth.net",
+      "mentalcitycenter.org",
+      "beachsidementalhealth.org"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop in a small town",
+    "expected_domains": [
+      "coffeeshopa.com",
+      "smallorganica.org",
+      "shoptownorganic.net"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup with a luxury touch",
+    "expected_domains": [
+      "touchluxurya.net",
+      "asaasluxury.net",
+      "startupaia.org"
+    ]
+  },
+  {
+    "business_description": "family law firm with a global audience",
+    "expected_domains": [
+      "withaudienceglobal.org",
+      "firmlawaudience.net",
+      "firmalaw.net"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app in downtown area",
+    "expected_domains": [
+      "inareagaming.org",
+      "gamingmobilein.net",
+      "mobileindowntown.net"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop targeting remote workers",
+    "expected_domains": [
+      "targetingcoffeeworkers.com",
+      "coffeeshopworkers.org",
+      "targetingorganiccoffee.org"
+    ]
+  },
+  {
+    "business_description": "online education platform in San Francisco",
+    "expected_domains": [
+      "educationfranciscosan.org",
+      "inonlinefrancisco.com",
+      "onlineeducationplatform.com"
+    ]
+  },
+  {
+    "business_description": "real estate agency targeting remote workers",
+    "expected_domains": [
+      "workersrealtargeting.org",
+      "realestateremote.com",
+      "agencytargetingremote.net"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop for Gen Z customers",
+    "expected_domains": [
+      "customersshopfor.org",
+      "fororganicgen.net",
+      "organicgenfor.net"
+    ]
+  },
+  {
+    "business_description": "family law firm in a small town",
+    "expected_domains": [
+      "insmalllaw.com",
+      "infirmlaw.org",
+      "familyinlaw.com"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop with a luxury touch",
+    "expected_domains": [
+      "coffeeluxurywith.net",
+      "luxurytouchshop.com",
+      "withtoucha.org"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand with a global audience",
+    "expected_domains": [
+      "ecofriendlyclothingwith.net",
+      "withglobalclothing.org",
+      "audienceclothinga.net"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand in downtown area",
+    "expected_domains": [
+      "ecofriendlybrandarea.net",
+      "downtownbrandecofriendly.org",
+      "downtowninarea.com"
+    ]
+  },
+  {
+    "business_description": "real estate agency with a luxury touch",
+    "expected_domains": [
+      "arealwith.net",
+      "estateareal.net",
+      "withluxurya.com"
+    ]
+  },
+  {
+    "business_description": "pet grooming service targeting remote workers",
+    "expected_domains": [
+      "groomingworkersservice.org",
+      "groomingtargetingpet.com",
+      "groomingworkersremote.net"
+    ]
+  },
+  {
+    "business_description": "luxury skincare line in San Francisco",
+    "expected_domains": [
+      "sanfranciscoin.com",
+      "franciscoskincareline.net",
+      "infranciscoluxury.org"
+    ]
+  },
+  {
+    "business_description": "pet grooming service in San Francisco",
+    "expected_domains": [
+      "franciscoinpet.org",
+      "petinservice.org",
+      "petgroomingfrancisco.com"
+    ]
+  },
+  {
+    "business_description": "family law firm in downtown area",
+    "expected_domains": [
+      "arealawfamily.net",
+      "familyfirmdowntown.net",
+      "infamilyarea.com"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app in downtown area",
+    "expected_domains": [
+      "inmobileapp.com",
+      "downtowngamingmobile.net",
+      "gamingindowntown.net"
+    ]
+  },
+  {
+    "business_description": "online education platform in a small town",
+    "expected_domains": [
+      "educationtownsmall.net",
+      "smallaplatform.net",
+      "educationtownin.net"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center targeting remote workers",
+    "expected_domains": [
+      "remotetargetingworkers.net",
+      "targetingremotecenter.org",
+      "remotecounselinghealth.net"
+    ]
+  },
+  {
+    "business_description": "online education platform with a global audience",
+    "expected_domains": [
+      "aeducationplatform.net",
+      "aaudienceplatform.org",
+      "globalwithplatform.net"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop in downtown area",
+    "expected_domains": [
+      "organicareacoffee.org",
+      "organicdowntownarea.com",
+      "downtownorganicarea.com"
+    ]
+  },
+  {
+    "business_description": "animal shelter nonprofit for Gen Z customers",
+    "expected_domains": [
+      "zgenshelter.net",
+      "forcustomersgen.com",
+      "animalcustomersshelter.com"
+    ]
+  },
+  {
+    "business_description": "vegan bakery in downtown area",
+    "expected_domains": [
+      "veganbakeryin.org",
+      "inareadowntown.org",
+      "bakeryareain.com"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop in San Francisco",
+    "expected_domains": [
+      "organiccoffeein.net",
+      "incoffeeshop.net",
+      "insanorganic.org"
+    ]
+  },
+  {
+    "business_description": "animal shelter nonprofit with a luxury touch",
+    "expected_domains": [
+      "nonprofittouchshelter.com",
+      "touchwithnonprofit.org",
+      "animalluxurytouch.com"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand with a global audience",
+    "expected_domains": [
+      "ecofriendlyaudienceclothing.net",
+      "clothingecofriendlywith.com",
+      "aaudienceglobal.net"
+    ]
+  },
+  {
+    "business_description": "family law firm in a small town",
+    "expected_domains": [
+      "alawfirm.net",
+      "smallfirma.com",
+      "alawfamily.com"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center with a luxury touch",
+    "expected_domains": [
+      "luxuryahealth.net",
+      "mentalwithcounseling.com",
+      "counselingcentermental.org"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup in downtown area",
+    "expected_domains": [
+      "downtowninstartup.net",
+      "areadowntownstartup.com",
+      "inareastartup.org"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop in a beachside city",
+    "expected_domains": [
+      "organiccoffeeshop.net",
+      "citycoffeeshop.net",
+      "organicshopbeachside.org"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center in downtown area",
+    "expected_domains": [
+      "areamentalcounseling.org",
+      "centerareacounseling.org",
+      "counselingareacenter.org"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup for Gen Z customers",
+    "expected_domains": [
+      "startupaifor.com",
+      "saascustomersz.com",
+      "aisaasz.com"
+    ]
+  },
+  {
+    "business_description": "family law firm with a luxury touch",
+    "expected_domains": [
+      "touchlawfirm.org",
+      "familyfirmtouch.com",
+      "luxurylawfirm.net"
+    ]
+  },
+  {
+    "business_description": "online education platform for Gen Z customers",
+    "expected_domains": [
+      "customersforonline.com",
+      "educationzcustomers.com",
+      "zcustomersfor.org"
+    ]
+  },
+  {
+    "business_description": "pet grooming service in a beachside city",
+    "expected_domains": [
+      "beachsideacity.net",
+      "inbeachsidegrooming.org",
+      "beachsideincity.org"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand in a small town",
+    "expected_domains": [
+      "brandclothingtown.com",
+      "clothingina.com",
+      "ecofriendlytownin.org"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand in downtown area",
+    "expected_domains": [
+      "downtownclothingbrand.org",
+      "ecofriendlyareaclothing.net",
+      "inareaclothing.net"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop in downtown area",
+    "expected_domains": [
+      "shopinarea.net",
+      "areadowntownshop.org",
+      "shopincoffee.com"
+    ]
+  },
+  {
+    "business_description": "online education platform for Gen Z customers",
+    "expected_domains": [
+      "forcustomersz.net",
+      "platformeducationfor.com",
+      "onlinezcustomers.org"
+    ]
+  },
+  {
+    "business_description": "family law firm in a small town",
+    "expected_domains": [
+      "smallinlaw.org",
+      "atownsmall.com",
+      "familylawfirm.org"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center in San Francisco",
+    "expected_domains": [
+      "sanhealthmental.com",
+      "healthcounselingsan.net",
+      "franciscosanin.org"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand with a global audience",
+    "expected_domains": [
+      "globalecofriendlya.com",
+      "brandwithecofriendly.com",
+      "audiencewithbrand.com"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand in a beachside city",
+    "expected_domains": [
+      "ecofriendlybranda.org",
+      "cityain.com",
+      "citybeachsideclothing.org"
+    ]
+  },
+  {
+    "business_description": "real estate agency for Gen Z customers",
+    "expected_domains": [
+      "estategenagency.com",
+      "zestatecustomers.org",
+      "agencyforcustomers.net"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center targeting remote workers",
+    "expected_domains": [
+      "workerscounselinghealth.net",
+      "targetinghealthcenter.org",
+      "counselinghealthmental.org"
+    ]
+  },
+  {
+    "business_description": "luxury skincare line in San Francisco",
+    "expected_domains": [
+      "skincarelinein.net",
+      "luxurysanfrancisco.org",
+      "skincareinfrancisco.com"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand in downtown area",
+    "expected_domains": [
+      "downtownbrandarea.com",
+      "downtownclothingecofriendly.com",
+      "downtownareabrand.net"
+    ]
+  },
+  {
+    "business_description": "luxury skincare line targeting remote workers",
+    "expected_domains": [
+      "workerslineluxury.net",
+      "remotelineluxury.org",
+      "luxuryremoteline.com"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop in a beachside city",
+    "expected_domains": [
+      "coffeecityshop.org",
+      "inbeachsideshop.org",
+      "inbeachsideshop.com"
+    ]
+  },
+  {
+    "business_description": "luxury skincare line with a global audience",
+    "expected_domains": [
+      "globalskincareluxury.org",
+      "aaudienceluxury.org",
+      "skincarewithluxury.org"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop for Gen Z customers",
+    "expected_domains": [
+      "customerscoffeegen.net",
+      "forcoffeez.com",
+      "gencustomersorganic.net"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app in downtown area",
+    "expected_domains": [
+      "downtownappmobile.net",
+      "appingaming.net",
+      "downtowngamingapp.net"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup in San Francisco",
+    "expected_domains": [
+      "aisaasstartup.org",
+      "franciscostartupsaas.com",
+      "sanaifrancisco.com"
+    ]
+  },
+  {
+    "business_description": "luxury skincare line targeting remote workers",
+    "expected_domains": [
+      "skincareremoteluxury.org",
+      "linetargetingluxury.net",
+      "remoteworkersluxury.org"
+    ]
+  },
+  {
+    "business_description": "family law firm in downtown area",
+    "expected_domains": [
+      "familyareafirm.net",
+      "lawinarea.com",
+      "lawfirmin.org"
+    ]
+  },
+  {
+    "business_description": "real estate agency with a global audience",
+    "expected_domains": [
+      "aaudiencereal.org",
+      "withglobalaudience.com",
+      "withagencyreal.org"
+    ]
+  },
+  {
+    "business_description": "luxury skincare line in a beachside city",
+    "expected_domains": [
+      "luxurylinecity.net",
+      "inluxuryskincare.net",
+      "linebeachsideluxury.net"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand in downtown area",
+    "expected_domains": [
+      "areaclothingdowntown.com",
+      "clothingareadowntown.com",
+      "clothingdowntownbrand.com"
+    ]
+  },
+  {
+    "business_description": "luxury skincare line in a small town",
+    "expected_domains": [
+      "skincareina.org",
+      "luxurysmallskincare.net",
+      "inskincarea.net"
+    ]
+  },
+  {
+    "business_description": "real estate agency with a global audience",
+    "expected_domains": [
+      "realestatea.net",
+      "arealglobal.org",
+      "estateglobalaudience.com"
+    ]
+  },
+  {
+    "business_description": "online education platform in downtown area",
+    "expected_domains": [
+      "ineducationplatform.org",
+      "downtowninonline.com",
+      "platformareadowntown.com"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop targeting remote workers",
+    "expected_domains": [
+      "shoptargetingorganic.org",
+      "workerscoffeeshop.net",
+      "workersshopremote.com"
+    ]
+  },
+  {
+    "business_description": "animal shelter nonprofit for Gen Z customers",
+    "expected_domains": [
+      "customersshelterfor.net",
+      "nonprofitgenshelter.com",
+      "animalfornonprofit.com"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand targeting remote workers",
+    "expected_domains": [
+      "ecofriendlyworkersremote.net",
+      "targetingecofriendlyworkers.org",
+      "brandremoteclothing.com"
+    ]
+  },
+  {
+    "business_description": "vegan bakery targeting remote workers",
+    "expected_domains": [
+      "targetingworkersbakery.org",
+      "vegantargetingremote.net",
+      "remotebakeryworkers.net"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup in a beachside city",
+    "expected_domains": [
+      "saasina.org",
+      "aicitya.com",
+      "instartupa.net"
+    ]
+  },
+  {
+    "business_description": "luxury skincare line in downtown area",
+    "expected_domains": [
+      "inlineluxury.org",
+      "skincarelinearea.com",
+      "arealuxuryskincare.com"
+    ]
+  },
+  {
+    "business_description": "vegan bakery in a beachside city",
+    "expected_domains": [
+      "beachsidecitya.org",
+      "acitybakery.com",
+      "veganinbeachside.org"
+    ]
+  },
+  {
+    "business_description": "animal shelter nonprofit in a small town",
+    "expected_domains": [
+      "townsheltersmall.com",
+      "nonprofitsmalla.net",
+      "townanimalshelter.com"
+    ]
+  },
+  {
+    "business_description": "family law firm in downtown area",
+    "expected_domains": [
+      "inarealaw.com",
+      "lawdowntownfamily.net",
+      "downtowninfirm.net"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center in downtown area",
+    "expected_domains": [
+      "healthcounselingcenter.org",
+      "healthcounselingarea.net",
+      "healthdowntownin.net"
+    ]
+  },
+  {
+    "business_description": "luxury skincare line in San Francisco",
+    "expected_domains": [
+      "inlineluxury.org",
+      "skincarefranciscoluxury.net",
+      "sanluxuryskincare.net"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup with a luxury touch",
+    "expected_domains": [
+      "luxurysaasstartup.com",
+      "startuptouchluxury.net",
+      "luxurytouchai.com"
+    ]
+  },
+  {
+    "business_description": "pet grooming service targeting remote workers",
+    "expected_domains": [
+      "servicegroomingremote.net",
+      "petgroomingservice.net",
+      "remotegroomingpet.org"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup in downtown area",
+    "expected_domains": [
+      "instartuparea.net",
+      "aidowntownin.com",
+      "areaaisaas.com"
+    ]
+  },
+  {
+    "business_description": "family law firm in a beachside city",
+    "expected_domains": [
+      "firmfamilybeachside.net",
+      "familyfirmin.net",
+      "infamilya.net"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app in a beachside city",
+    "expected_domains": [
+      "cityappgaming.com",
+      "appbeachsidein.com",
+      "gamingbeachsidea.net"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop with a global audience",
+    "expected_domains": [
+      "withashop.com",
+      "organicglobalwith.com",
+      "shopglobalaudience.net"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup in a beachside city",
+    "expected_domains": [
+      "saasaiin.org",
+      "startupsaasin.com",
+      "cityaiin.com"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup in a small town",
+    "expected_domains": [
+      "astartupai.org",
+      "astartupin.org",
+      "insmalltown.org"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app with a luxury touch",
+    "expected_domains": [
+      "appluxurytouch.net",
+      "luxurymobileapp.org",
+      "touchappwith.org"
+    ]
+  },
+  {
+    "business_description": "pet grooming service with a global audience",
+    "expected_domains": [
+      "petgroomingwith.com",
+      "audienceglobala.com",
+      "groomingwithservice.org"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand with a luxury touch",
+    "expected_domains": [
+      "luxuryatouch.com",
+      "ecofriendlybrandwith.com",
+      "ecofriendlybrandwith.org"
+    ]
+  },
+  {
+    "business_description": "vegan bakery in a small town",
+    "expected_domains": [
+      "invegansmall.net",
+      "bakeryveganin.org",
+      "invegantown.com"
+    ]
+  },
+  {
+    "business_description": "online education platform in a small town",
+    "expected_domains": [
+      "smallain.net",
+      "educationina.com",
+      "onlinesmalltown.com"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup targeting remote workers",
+    "expected_domains": [
+      "airemotestartup.net",
+      "startupworkerstargeting.net",
+      "aitargetingsaas.org"
+    ]
+  },
+  {
+    "business_description": "real estate agency with a luxury touch",
+    "expected_domains": [
+      "realtoucha.com",
+      "arealluxury.net",
+      "realestatewith.org"
+    ]
+  },
+  {
+    "business_description": "real estate agency in downtown area",
+    "expected_domains": [
+      "realinestate.org",
+      "agencyareadowntown.net",
+      "estaterealagency.com"
+    ]
+  },
+  {
+    "business_description": "family law firm with a global audience",
+    "expected_domains": [
+      "alawfirm.org",
+      "firmglobalaudience.com",
+      "globalfamilya.org"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup in a small town",
+    "expected_domains": [
+      "saasaiin.org",
+      "intownsaas.org",
+      "asaassmall.com"
+    ]
+  },
+  {
+    "business_description": "pet grooming service in downtown area",
+    "expected_domains": [
+      "ingroomingdowntown.net",
+      "groomingpetdowntown.net",
+      "downtownareaservice.org"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup for Gen Z customers",
+    "expected_domains": [
+      "forgencustomers.com",
+      "aistartupcustomers.com",
+      "zaifor.com"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center in a beachside city",
+    "expected_domains": [
+      "inmentalbeachside.net",
+      "acounselingin.com",
+      "counselingbeachsidecenter.com"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand for Gen Z customers",
+    "expected_domains": [
+      "forclothingcustomers.org",
+      "clothingecofriendlybrand.org",
+      "brandcustomersfor.org"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop for Gen Z customers",
+    "expected_domains": [
+      "customersfororganic.net",
+      "organicshopgen.net",
+      "shopzorganic.org"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app for Gen Z customers",
+    "expected_domains": [
+      "formobilegaming.net",
+      "appgamingcustomers.net",
+      "zcustomersmobile.org"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center in San Francisco",
+    "expected_domains": [
+      "centercounselingsan.org",
+      "sanhealthin.net",
+      "healthmentalsan.com"
+    ]
+  },
+  {
+    "business_description": "family law firm for Gen Z customers",
+    "expected_domains": [
+      "forgenz.com",
+      "lawforz.com",
+      "lawfamilyfor.com"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app in downtown area",
+    "expected_domains": [
+      "appgamingdowntown.org",
+      "inappgaming.org",
+      "downtowningaming.net"
+    ]
+  },
+  {
+    "business_description": "real estate agency in downtown area",
+    "expected_domains": [
+      "estateareadowntown.com",
+      "downtownagencyarea.net",
+      "agencyareain.org"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup with a luxury touch",
+    "expected_domains": [
+      "luxuryaia.net",
+      "saastoucha.com",
+      "awithluxury.com"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop in San Francisco",
+    "expected_domains": [
+      "organicinfrancisco.com",
+      "insanfrancisco.net",
+      "organiccoffeesan.com"
+    ]
+  },
+  {
+    "business_description": "real estate agency in downtown area",
+    "expected_domains": [
+      "realdowntownin.com",
+      "areaindowntown.net",
+      "estatedowntownreal.net"
+    ]
+  },
+  {
+    "business_description": "online education platform for Gen Z customers",
+    "expected_domains": [
+      "educationgenonline.org",
+      "onlinegenplatform.net",
+      "zgenplatform.com"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app in a beachside city",
+    "expected_domains": [
+      "mobilebeachsidegaming.org",
+      "cityappmobile.com",
+      "citygamingmobile.org"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop targeting remote workers",
+    "expected_domains": [
+      "remoteworkersshop.net",
+      "remotetargetingorganic.net",
+      "remoteworkersorganic.net"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app with a global audience",
+    "expected_domains": [
+      "agamingmobile.net",
+      "mobileaudienceglobal.org",
+      "withmobilea.net"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup for Gen Z customers",
+    "expected_domains": [
+      "genforstartup.org",
+      "aigensaas.net",
+      "saasforstartup.com"
+    ]
+  },
+  {
+    "business_description": "pet grooming service with a luxury touch",
+    "expected_domains": [
+      "touchgroomingluxury.com",
+      "petwithluxury.org",
+      "petluxurytouch.net"
+    ]
+  },
+  {
+    "business_description": "animal shelter nonprofit with a global audience",
+    "expected_domains": [
+      "audienceglobalanimal.org",
+      "shelteraaudience.net",
+      "animalglobalnonprofit.org"
+    ]
+  },
+  {
+    "business_description": "online education platform with a global audience",
+    "expected_domains": [
+      "aeducationplatform.com",
+      "withplatforma.org",
+      "educationaudiencea.net"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app for Gen Z customers",
+    "expected_domains": [
+      "customersappz.org",
+      "gamingforapp.net",
+      "mobileappgen.net"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center in a beachside city",
+    "expected_domains": [
+      "centercitycounseling.org",
+      "mentalabeachside.net",
+      "healthcityin.org"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand targeting remote workers",
+    "expected_domains": [
+      "clothingbrandremote.com",
+      "brandworkersremote.org",
+      "remoteworkersbrand.com"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup with a luxury touch",
+    "expected_domains": [
+      "luxurywithtouch.com",
+      "startupsaasai.org",
+      "touchwitha.net"
+    ]
+  },
+  {
+    "business_description": "pet grooming service in San Francisco",
+    "expected_domains": [
+      "inpetsan.net",
+      "servicegroomingfrancisco.net",
+      "groomingservicepet.org"
+    ]
+  },
+  {
+    "business_description": "family law firm targeting remote workers",
+    "expected_domains": [
+      "familyworkerstargeting.org",
+      "workersfamilytargeting.net",
+      "targetingfirmremote.org"
+    ]
+  },
+  {
+    "business_description": "luxury skincare line in San Francisco",
+    "expected_domains": [
+      "sanfranciscoin.com",
+      "linefranciscoin.org",
+      "insanskincare.net"
+    ]
+  },
+  {
+    "business_description": "family law firm targeting remote workers",
+    "expected_domains": [
+      "familylawtargeting.org",
+      "workersfamilytargeting.net",
+      "firmtargetingfamily.net"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand with a luxury touch",
+    "expected_domains": [
+      "ecofriendlyluxurywith.net",
+      "brandtouchclothing.net",
+      "brandaclothing.com"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center in a small town",
+    "expected_domains": [
+      "healthsmalltown.org",
+      "centeramental.org",
+      "incentermental.org"
+    ]
+  },
+  {
+    "business_description": "animal shelter nonprofit for Gen Z customers",
+    "expected_domains": [
+      "customersnonprofitfor.net",
+      "animalcustomersnonprofit.com",
+      "animalzfor.org"
+    ]
+  },
+  {
+    "business_description": "online education platform in downtown area",
+    "expected_domains": [
+      "downtowninarea.net",
+      "areadowntowneducation.net",
+      "areaplatformeducation.org"
+    ]
+  },
+  {
+    "business_description": "pet grooming service in a small town",
+    "expected_domains": [
+      "groomingpetservice.org",
+      "ingroominga.org",
+      "atownservice.com"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app in a beachside city",
+    "expected_domains": [
+      "mobilecitygaming.com",
+      "gamingbeachsidea.com",
+      "mobilebeachsidegaming.com"
+    ]
+  },
+  {
+    "business_description": "luxury skincare line with a luxury touch",
+    "expected_domains": [
+      "skincaretoucha.org",
+      "luxuryskincareluxury.net",
+      "touchluxuryskincare.net"
+    ]
+  },
+  {
+    "business_description": "family law firm in downtown area",
+    "expected_domains": [
+      "lawdowntownarea.net",
+      "inareafirm.com",
+      "areadowntownfamily.net"
+    ]
+  },
+  {
+    "business_description": "online education platform in downtown area",
+    "expected_domains": [
+      "platformdowntowneducation.net",
+      "inareaplatform.net",
+      "downtownonlinearea.org"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand targeting remote workers",
+    "expected_domains": [
+      "targetingremoteworkers.org",
+      "ecofriendlyworkersclothing.net",
+      "clothingbrandecofriendly.net"
+    ]
+  },
+  {
+    "business_description": "animal shelter nonprofit with a global audience",
+    "expected_domains": [
+      "audienceanimalglobal.net",
+      "shelteranimalnonprofit.org",
+      "withshelteraudience.org"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand in downtown area",
+    "expected_domains": [
+      "ecofriendlyinbrand.org",
+      "ecofriendlybranddowntown.com",
+      "ecofriendlydowntownclothing.com"
+    ]
+  },
+  {
+    "business_description": "family law firm in downtown area",
+    "expected_domains": [
+      "lawareain.net",
+      "firmdowntownin.org",
+      "inlawarea.com"
+    ]
+  },
+  {
+    "business_description": "vegan bakery for Gen Z customers",
+    "expected_domains": [
+      "gencustomersfor.net",
+      "zforvegan.net",
+      "forgencustomers.net"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup in a beachside city",
+    "expected_domains": [
+      "saasabeachside.org",
+      "aisaasa.com",
+      "instartupcity.net"
+    ]
+  },
+  {
+    "business_description": "family law firm with a luxury touch",
+    "expected_domains": [
+      "touchfirmluxury.net",
+      "atouchfamily.org",
+      "touchafirm.net"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app for Gen Z customers",
+    "expected_domains": [
+      "forgengaming.org",
+      "gamingcustomersmobile.org",
+      "genmobilez.org"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop targeting remote workers",
+    "expected_domains": [
+      "shopremoteorganic.org",
+      "workersorganicremote.com",
+      "remotetargetingorganic.org"
+    ]
+  },
+  {
+    "business_description": "pet grooming service targeting remote workers",
+    "expected_domains": [
+      "remotepetgrooming.org",
+      "serviceremotepet.net",
+      "remotetargetingservice.com"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center with a luxury touch",
+    "expected_domains": [
+      "mentaltouchcounseling.org",
+      "withcentermental.com",
+      "luxurycentercounseling.net"
+    ]
+  },
+  {
+    "business_description": "family law firm in a beachside city",
+    "expected_domains": [
+      "firmbeachsidecity.com",
+      "firmbeachsidecity.net",
+      "firmlawbeachside.com"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup with a global audience",
+    "expected_domains": [
+      "withsaasaudience.org",
+      "globalaudienceai.org",
+      "saasaia.org"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center in a small town",
+    "expected_domains": [
+      "mentalacenter.org",
+      "smallahealth.com",
+      "centeracounseling.net"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center in downtown area",
+    "expected_domains": [
+      "areamentaldowntown.net",
+      "centerareain.com",
+      "mentaldowntownhealth.com"
+    ]
+  },
+  {
+    "business_description": "real estate agency in downtown area",
+    "expected_domains": [
+      "arearealdowntown.net",
+      "estatedowntownagency.com",
+      "estatedowntownin.org"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand for Gen Z customers",
+    "expected_domains": [
+      "ecofriendlyzbrand.org",
+      "forclothingbrand.net",
+      "brandcustomersz.org"
+    ]
+  },
+  {
+    "business_description": "real estate agency targeting remote workers",
+    "expected_domains": [
+      "targetingagencyestate.com",
+      "estateworkersreal.org",
+      "realremoteagency.net"
+    ]
+  },
+  {
+    "business_description": "animal shelter nonprofit with a luxury touch",
+    "expected_domains": [
+      "shelteranimalwith.com",
+      "animalashelter.org",
+      "shelternonprofitanimal.com"
+    ]
+  },
+  {
+    "business_description": "online education platform in San Francisco",
+    "expected_domains": [
+      "educationonlinesan.net",
+      "sanplatformeducation.org",
+      "educationfranciscosan.com"
+    ]
+  },
+  {
+    "business_description": "luxury skincare line in downtown area",
+    "expected_domains": [
+      "inareadowntown.net",
+      "luxuryarealine.com",
+      "arealineskincare.com"
+    ]
+  },
+  {
+    "business_description": "pet grooming service in San Francisco",
+    "expected_domains": [
+      "groomingpetfrancisco.com",
+      "servicegroomingin.net",
+      "inservicefrancisco.org"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand in a beachside city",
+    "expected_domains": [
+      "clothingbrandin.org",
+      "abeachsideecofriendly.net",
+      "acitybrand.org"
+    ]
+  },
+  {
+    "business_description": "AI SaaS startup with a luxury touch",
+    "expected_domains": [
+      "startupaiwith.net",
+      "luxuryaiwith.net",
+      "touchwithluxury.net"
+    ]
+  },
+  {
+    "business_description": "luxury skincare line with a luxury touch",
+    "expected_domains": [
+      "luxurywithtouch.com",
+      "luxuryluxurytouch.net",
+      "luxurytouchluxury.com"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand with a luxury touch",
+    "expected_domains": [
+      "touchbrandwith.org",
+      "clothingluxurytouch.com",
+      "aclothingbrand.net"
+    ]
+  },
+  {
+    "business_description": "vegan bakery in downtown area",
+    "expected_domains": [
+      "veganbakerydowntown.net",
+      "areabakeryvegan.com",
+      "areadowntownbakery.net"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center in a small town",
+    "expected_domains": [
+      "centertowncounseling.net",
+      "smallahealth.com",
+      "healthcounselingin.net"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop with a global audience",
+    "expected_domains": [
+      "audiencecoffeea.org",
+      "audienceshopwith.com",
+      "acoffeeorganic.net"
+    ]
+  },
+  {
+    "business_description": "online education platform in a small town",
+    "expected_domains": [
+      "platformineducation.net",
+      "platformonlinesmall.net",
+      "platformsmallin.org"
+    ]
+  },
+  {
+    "business_description": "animal shelter nonprofit in a beachside city",
+    "expected_domains": [
+      "shelterbeachsidein.org",
+      "inshelterbeachside.net",
+      "inaanimal.com"
+    ]
+  },
+  {
+    "business_description": "pet grooming service with a global audience",
+    "expected_domains": [
+      "awithaudience.net",
+      "audienceglobalservice.com",
+      "agroomingaudience.org"
+    ]
+  },
+  {
+    "business_description": "vegan bakery in a small town",
+    "expected_domains": [
+      "bakeryina.org",
+      "bakerysmallin.org",
+      "smallvegantown.net"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop in downtown area",
+    "expected_domains": [
+      "inorganiccoffee.com",
+      "coffeeorganicdowntown.org",
+      "shopdowntowncoffee.net"
+    ]
+  },
+  {
+    "business_description": "organic coffee shop in a small town",
+    "expected_domains": [
+      "organicincoffee.org",
+      "asmallshop.com",
+      "towninsmall.org"
+    ]
+  },
+  {
+    "business_description": "online education platform for Gen Z customers",
+    "expected_domains": [
+      "forzeducation.com",
+      "educationgenz.org",
+      "platformeducationcustomers.net"
+    ]
+  },
+  {
+    "business_description": "animal shelter nonprofit in San Francisco",
+    "expected_domains": [
+      "animalinsan.com",
+      "franciscoanimalin.com",
+      "sannonprofitin.org"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app in a small town",
+    "expected_domains": [
+      "townsmallin.net",
+      "inasmall.net",
+      "gamingmobiletown.org"
+    ]
+  },
+  {
+    "business_description": "real estate agency with a luxury touch",
+    "expected_domains": [
+      "agencywithreal.org",
+      "touchagencyestate.net"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center in a beachside city",
+    "expected_domains": [
+      "amentalin.net",
+      "centermentalbeachside.com",
+      "beachsidecentermental.com"
+    ]
+  },
+  {
+    "business_description": "eco-friendly clothing brand in San Francisco",
+    "expected_domains": [
+      "brandclothingin.com",
+      "ecofriendlybrandsan.com",
+      "ecofriendlyclothingsan.net"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app in a beachside city",
+    "expected_domains": [
+      "mobilegaminga.com",
+      "gamingbeachsidecity.org",
+      "acitygaming.net"
+    ]
+  },
+  {
+    "business_description": "gaming mobile app in downtown area",
+    "expected_domains": [
+      "mobiledowntownapp.com",
+      "inareagaming.com",
+      "gamingareaapp.com"
+    ]
+  },
+  {
+    "business_description": "pet grooming service for Gen Z customers",
+    "expected_domains": [
+      "servicegenpet.org",
+      "servicegenpet.com",
+      "customersforgrooming.net"
+    ]
+  },
+  {
+    "business_description": "family law firm targeting remote workers",
+    "expected_domains": [
+      "targetingfamilyfirm.net",
+      "lawtargetingfirm.org",
+      "firmtargetingremote.org"
+    ]
+  },
+  {
+    "business_description": "vegan bakery in a small town",
+    "expected_domains": [
+      "intowna.org",
+      "abakerysmall.org",
+      "asmallin.net"
+    ]
+  },
+  {
+    "business_description": "mental health counseling center in a small town",
+    "expected_domains": [
+      "inmentaltown.org",
+      "insmallhealth.com",
+      "aincenter.org"
+    ]
+  }
+]
