@@ -14,7 +14,7 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 client = openai.OpenAI(api_key=openai.api_key)
 
-MODEL_PATH = "gpt2"
+MODEL_PATH = "models/checkpoints/tiny-gpt2/checkpoint-115"  # or the path to your fine-tuned model
 tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
 model = AutoModelForCausalLM.from_pretrained(MODEL_PATH)
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -56,22 +56,23 @@ def generate_domains_api(req: DomainRequest):
             "status": "blocked",
             "message": "Request contains inappropriate content"
         }
-    prompt = f"Suggest domain names for: {req.business_description}"
+    prompt = f"Suggest {req.num_domains} creative, short, and brandable domain names (ending with .com) for a business: {req.business_description}. Only return the domain names, separated by commas."
     inputs = tokenizer(prompt, return_tensors="pt").to(device)
     outputs = model.generate(
         **inputs,
-        max_new_tokens=20,
+        max_new_tokens=40,
         do_sample=True,
         top_k=50,
         top_p=0.95,
         temperature=0.9,
-        num_return_sequences=req.num_domains,
+        num_return_sequences=1,
         pad_token_id=tokenizer.eos_token_id,
     )
-    domains = [tokenizer.decode(o, skip_special_tokens=True).replace(prompt, "").strip() for o in outputs]
-    # Assign random confidence scores for demo
+    decoded = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    domains_text = decoded.replace(prompt, "").strip()
+    domains = [d.strip() for d in domains_text.split(",") if d.strip()]
     suggestions = [
-        {"domain": d, "confidence": round(random.uniform(0.8, 0.99), 2)} for d in domains
+        {"domain": d, "confidence": round(random.uniform(0.8, 0.99), 2)} for d in domains[:req.num_domains]
     ]
     return {"suggestions": suggestions, "status": "success"}
 
