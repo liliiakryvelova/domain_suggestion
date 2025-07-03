@@ -8,13 +8,16 @@ from dotenv import load_dotenv
 import tiktoken
 import json
 import random
+import re
 from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 client = openai.OpenAI(api_key=openai.api_key)
 
-MODEL_PATH = "models/checkpoints/tiny-gpt2/checkpoint-115"  # or the path to your fine-tuned model
+# Dynamically get absolute path to the local model
+MODEL_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../local_model_finetuned"))
+
 tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
 model = AutoModelForCausalLM.from_pretrained(MODEL_PATH)
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -56,7 +59,11 @@ def generate_domains_api(req: DomainRequest):
             "status": "blocked",
             "message": "Request contains inappropriate content"
         }
-    prompt = f"Suggest {req.num_domains} creative, short, and brandable domain names (ending with .com) for a business: {req.business_description}. Only return the domain names, separated by commas."
+    prompt = (
+        f"Suggest {req.num_domains} creative, short, and brandable domain names "
+        f"(ending with .com, .org, or .net) for a business: {req.business_description}. "
+        "Only return the domain names, separated by commas."
+    )
     inputs = tokenizer(prompt, return_tensors="pt").to(device)
     outputs = model.generate(
         **inputs,
@@ -69,10 +76,48 @@ def generate_domains_api(req: DomainRequest):
         pad_token_id=tokenizer.eos_token_id,
     )
     decoded = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    domains_text = decoded.replace(prompt, "").strip()
-    domains = [d.strip() for d in domains_text.split(",") if d.strip()]
+    # Remove the prompt from the output if present
+    if decoded.startswith(prompt):
+        domains_text = decoded[len(prompt):].strip()
+    else:
+        domains_text = decoded.strip()
+    print(f"Model output: {domains_text}")  # For debugging
+
+    # Extract all valid domain names using regex
+    domain_pattern = r"[a-zA-Z0-9-]{3,}\.(?:com|org|net)"
+    found_domains = re.findall(domain_pattern, domains_text)
+
+    # If not enough domains, try splitting by comma and filter
+    if len(found_domains) < req.num_domains:
+        candidates = [d.strip() for d in domains_text.split(",") if d.strip()]
+        # Only keep valid domains
+        more_domains = [d for d in candidates if re.fullmatch(domain_pattern, d)]
+        # Add only new domains
+        for d in more_domains:
+            if d not in found_domains:
+                found_domains.append(d)
+
+    # Remove duplicates, keep order
+    unique_domains = []
+    seen = set()
+    for d in found_domains:
+        if d not in seen:
+            seen.add(d)
+            unique_domains.append(d)
+
+    # Fallback: if still not enough, just take first N comma-separated items
+    if len(unique_domains) < req.num_domains:
+        candidates = [d.strip() for d in domains_text.split(",") if d.strip()]
+        for d in candidates:
+            if d not in unique_domains:
+                unique_domains.append(d)
+            if len(unique_domains) >= req.num_domains:
+                break
+
+    # Only return up to num_domains
     suggestions = [
-        {"domain": d, "confidence": round(random.uniform(0.8, 0.99), 2)} for d in domains[:req.num_domains]
+        {"domain": d, "confidence": round(random.uniform(0.8, 0.99), 2)}
+        for d in unique_domains[:req.num_domains]
     ]
     return {"suggestions": suggestions, "status": "success"}
 

@@ -17,7 +17,7 @@
   "errors": "replace",
   "extra_special_tokens": {},
   "model_max_length": 1024,
-  "pad_token": null,
+  "pad_token": "<|endoftext|>",
   "tokenizer_class": "GPT2Tokenizer",
   "unk_token": "<|endoftext|>"
 }

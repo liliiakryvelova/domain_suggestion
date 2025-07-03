@@ -127,8 +127,11 @@
     <div id="judgeResult" class="result"></div>
   </div>
   <script>
-    // Change this to your deployed API URL
-    const API_BASE = "https://domain-suggestion.onrender.com";
+    // Change this to your deployed API URL or local backend
+    // For local development, use: const API_BASE = "http://127.0.0.1:8000";
+    // For production, use your deployed backend URL:
+    // const API_BASE = "https://domain-suggestion.onrender.com"; // or e.g. "https://your-backend-url.com"
+    const API_BASE = "http://127.0.0.1:8000";
 
     function renderDomains(data) {
       if (data.status === "blocked") {
