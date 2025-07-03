@@ -14,8 +14,8 @@
 ## 2. Edge Case Analysis
 
 ### Discovery Process
-- Edge cases are identified by analyzing the evaluation results in the notebook `02_edge_case_analysis.ipynb`.
-- The process includes sorting and filtering domains by low scores and unsafe flags.
+- Edge cases are identified by analyzing evaluation results in the notebook `02_edge_case_analysis.ipynb`.
+- This involves sorting and filtering domains by low scores and unsafe flags.
 
 ### Failure Taxonomy
 - Failures are categorized as:
@@ -30,23 +30,23 @@
 ## 3. Iterative Improvement
 
 ### Improvement Strategies
-- Iterative changes are made to the prompt, model parameters, and filtering logic to improve domain quality.
-- Each change is documented in the notebook, with rationale for the adjustment.
+- Iterative improvements are made to the prompt, model parameters, and filtering logic to enhance domain quality.
+- Each change is documented with rationale in the notebook.
 
 ### Quantified Results
-- Before/after metrics are recorded for each iteration, showing improvements in relevance, brandability, and safety.
+- Before/after metrics record improvements in relevance, brandability, and safety.
 
 ### LLM Judge Validation
-- The LLM judge's consistency is checked by reviewing outputs and, if needed, manually inspecting edge cases.
+- Consistency is checked by reviewing outputs and manually inspecting edge cases.
 - Fallback logic is implemented for API quota errors to ensure robust evaluation.
 
 ## 4. Model Comparison & Recommendations
 
 ### Performance Comparison
-- Multiple model versions or parameter settings are compared using statistical analysis (e.g., mean, std, and significance tests in the notebook).
+- Multiple model versions or parameter settings are compared using statistical analysis.
 
 ### Production Readiness
-- The most robust and highest-performing model version is recommended for deployment, based on evaluation metrics and error handling.
+- The most robust and highest-performing model version is recommended for deployment, based on evaluation and error handling.
 
 ### Future Improvements
 - Suggestions include:
@@ -55,10 +55,11 @@
   - Improving the LLM judge with ensemble or human-in-the-loop validation
   - Adding more granular failure categories
 
-## API Development (Optional)
-- The current project does not expose an API, but the codebase can be easily extended with a FastAPI or Flask endpoint for real-time domain evaluation.
+## 5. API Development & Usage
 
-## API Usage Examples
+### Overview
+- The project exposes a FastAPI server wrapping the fine-tuned GPT-2 model for domain suggestion.
+- The API also integrates OpenAI moderation and an LLM judge (GPT-3.5-turbo) for domain evaluation.
 
 ### Generate Domains (Safe Request)
 
@@ -69,70 +70,3 @@ POST /generate-domains
   "business_description": "organic coffee shop in downtown area",
   "num_domains": 3
 }
-```
-**Response:**
-```json
-{
-  "suggestions": [
-    {"domain": "organicbeanscafe.com", "confidence": 0.92},
-    {"domain": "downtowncoffee.org", "confidence": 0.87},
-    {"domain": "freshbreworganic.net", "confidence": 0.83}
-  ],
-  "status": "success"
-}
-```
-
-### Generate Domains (Blocked/Unsafe Request)
-
-**Request:**
-```json
-POST /generate-domains
-{
-  "business_description": "adult content website with explicit nude content",
-  "num_domains": 3
-}
-```
-**Response:**
-```json
-{
-  "suggestions": [],
-  "status": "blocked",
-  "message": "Request contains inappropriate content"
-}
-```
-
-### Judge Domain (Example)
-
-**Request:**
-```json
-POST /judge-domain
-{
-  "domain": "genzai.com",
-  "description": "AI SaaS for Gen Z"
-}
-```
-**Response:**
-```json
-{
-  "relevance": 10,
-  "brandability": 5,
-  "safe": true
-}
-```
-
-## Technologies Used
-
-- **Python 3.10+** — Core programming language
-- **PyTorch** — For running and fine-tuning the GPT-2 model
-- **Transformers (Hugging Face)** — Model and tokenizer management
-- **OpenAI API** — LLM-based domain scoring and moderation
-- **tiktoken** — Token counting for prompt management
-- **FastAPI** — REST API for domain generation and evaluation
-- **Uvicorn** — ASGI server for running FastAPI
-- **pandas** — Data analysis in notebooks
-- **Jupyter Notebook** — For analysis, edge case exploration, and reporting
-- **dotenv** — Environment variable management
-
----
-
-**For details and code, see the scripts and notebooks in this repository.**
