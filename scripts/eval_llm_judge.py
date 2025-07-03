@@ -4,14 +4,15 @@ import json
 import os
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
-import openai
+from openai import OpenAI
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 from dotenv import load_dotenv
 from pathlib import Path
 import tiktoken
 
 # --- Load keys and models ---
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
 client = openai.OpenAI(api_key=openai.api_key)
 
 MODEL_PATH = "sshleifer/tiny-gpt2"
@@ -24,9 +25,9 @@ model.to(device)
 # --- Content Safety Check ---
 def is_safe(text: str) -> bool:
     try:
-        response = openai.Moderation.create(input=text)
-        flagged = response["results"][0]["flagged"]
-        categories = response["results"][0]["categories"]
+        response = client.moderations.create(input=text)
+        flagged = response.results[0].flagged
+        categories = response.results[0].categories
         if flagged:
             print(f"❌ Flagged: {text} \nCategories: {categories}")
         return not flagged

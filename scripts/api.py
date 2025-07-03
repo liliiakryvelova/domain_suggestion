@@ -1,8 +1,7 @@
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
-import openai
 import os
 from dotenv import load_dotenv
 import tiktoken
@@ -12,10 +11,16 @@ import re
 import logging
 from fastapi.middleware.cors import CORSMiddleware
 
+# New import for OpenAI Python SDK v1+
+from openai import OpenAI
+
 # Load environment variables
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 HF_TOKEN = os.getenv("HF_TOKEN")
+
+# Initialize OpenAI client
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -68,10 +73,13 @@ def root():
 
 @app.post("/generate-domains")
 def generate_domains_api(req: DomainRequest):
-    # Safety check using OpenAI Moderation
+    # Safety check using OpenAI Moderation (new API)
     try:
-        mod = openai.Moderation.create(input=req.business_description)
-        flagged = mod["results"][0]["flagged"]
+        mod = client.moderations.create(
+            model="omni-moderation-latest",
+            input=req.business_description
+        )
+        flagged = mod.results[0].flagged
     except Exception as e:
         flagged = False
         logger.warning(f"Moderation fallback: {e}")
@@ -167,7 +175,7 @@ Return your answer in strict JSON format, for example:
         tokens_in_prompt = len(encoder.encode(system_msg + user_prompt))
         logger.info(f"🧮 Tokens in prompt: {tokens_in_prompt}")
 
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": system_msg},
