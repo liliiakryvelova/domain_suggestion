@@ -83,6 +83,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.vscode/
+
 
 # Data and model files
 data/

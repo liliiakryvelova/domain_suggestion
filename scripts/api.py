@@ -9,22 +9,42 @@ import tiktoken
 import json
 import random
 import re
+import logging
 from fastapi.middleware.cors import CORSMiddleware
 
+# Load environment variables
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
-client = openai.OpenAI(api_key=openai.api_key)
+HF_TOKEN = os.getenv("HF_TOKEN")
 
-# Dynamically get absolute path to the local model
-MODEL_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../local_model_finetuned"))
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
-model = AutoModelForCausalLM.from_pretrained(MODEL_PATH)
-device = "cuda" if torch.cuda.is_available() else "cpu"
-model.to(device)
+# Load Hugging Face model
+MODEL_NAME = "Octopus87/domain-suggester-gpt2"
 
+logger.info("🚀 Loading model from Hugging Face Hub...")
+try:
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, token=HF_TOKEN, trust_remote_code=False)
+    model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, use_auth_token=HF_TOKEN)
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model.to(device)
+    logger.info(f"✅ Model loaded successfully on {device}")
+except Exception as e:
+    logger.warning(f"❌ Error loading model from HF: {e}")
+    logger.info("⏪ Falling back to local model...")
+    MODEL_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../local_model_finetuned"))
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
+    model = AutoModelForCausalLM.from_pretrained(MODEL_PATH)
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model.to(device)
+    logger.info(f"✅ Local model loaded successfully on {device}")
+
+# Initialize FastAPI app
 app = FastAPI()
 
+# Allow frontend CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["https://liliiakryvelova.github.io"],
@@ -33,6 +53,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Request Models
 class DomainRequest(BaseModel):
     business_description: str
     num_domains: int = 3
@@ -53,51 +74,57 @@ def generate_domains_api(req: DomainRequest):
         flagged = mod["results"][0]["flagged"]
     except Exception as e:
         flagged = False
+        logger.warning(f"Moderation fallback: {e}")
+
     if flagged:
         return {
             "suggestions": [],
             "status": "blocked",
             "message": "Request contains inappropriate content"
         }
+
     prompt = (
         f"Suggest {req.num_domains} creative, short, and brandable domain names "
         f"(ending with .com, .org, or .net) for a business: {req.business_description}. "
         "Only return the domain names, separated by commas."
     )
-    inputs = tokenizer(prompt, return_tensors="pt").to(device)
-    outputs = model.generate(
-        **inputs,
-        max_new_tokens=40,
-        do_sample=True,
-        top_k=50,
-        top_p=0.95,
-        temperature=0.9,
-        num_return_sequences=1,
-        pad_token_id=tokenizer.eos_token_id,
-    )
-    decoded = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    # Remove the prompt from the output if present
+    try:
+        inputs = tokenizer(prompt, return_tensors="pt").to(device)
+        outputs = model.generate(
+            **inputs,
+            max_new_tokens=40,
+            do_sample=True,
+            top_k=50,
+            top_p=0.95,
+            temperature=0.9,
+            num_return_sequences=1,
+            pad_token_id=tokenizer.eos_token_id,
+            eos_token_id=tokenizer.eos_token_id,
+        )
+        decoded = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    except Exception as e:
+        logger.error(f"Generation error: {e}")
+        raise HTTPException(status_code=500, detail="Failed to generate domain names.")
+
+    # Remove prompt if echoed
     if decoded.startswith(prompt):
         domains_text = decoded[len(prompt):].strip()
     else:
         domains_text = decoded.strip()
-    print(f"Model output: {domains_text}")  # For debugging
 
-    # Extract all valid domain names using regex
+    logger.info(f"🧠 Model output: {domains_text}")
+
+    # Extract domain names
     domain_pattern = r"[a-zA-Z0-9-]{3,}\.(?:com|org|net)"
     found_domains = re.findall(domain_pattern, domains_text)
 
-    # If not enough domains, try splitting by comma and filter
     if len(found_domains) < req.num_domains:
         candidates = [d.strip() for d in domains_text.split(",") if d.strip()]
-        # Only keep valid domains
         more_domains = [d for d in candidates if re.fullmatch(domain_pattern, d)]
-        # Add only new domains
         for d in more_domains:
             if d not in found_domains:
                 found_domains.append(d)
 
-    # Remove duplicates, keep order
     unique_domains = []
     seen = set()
     for d in found_domains:
@@ -105,7 +132,6 @@ def generate_domains_api(req: DomainRequest):
             seen.add(d)
             unique_domains.append(d)
 
-    # Fallback: if still not enough, just take first N comma-separated items
     if len(unique_domains) < req.num_domains:
         candidates = [d.strip() for d in domains_text.split(",") if d.strip()]
         for d in candidates:
@@ -114,7 +140,6 @@ def generate_domains_api(req: DomainRequest):
             if len(unique_domains) >= req.num_domains:
                 break
 
-    # Only return up to num_domains
     suggestions = [
         {"domain": d, "confidence": round(random.uniform(0.8, 0.99), 2)}
         for d in unique_domains[:req.num_domains]
@@ -136,11 +161,13 @@ Please rate the domain on:
 Return your answer in strict JSON format, for example:
 {{"relevance": 8, "brandability": 7, "safe": true}}
 """
+
     try:
         encoder = tiktoken.encoding_for_model("gpt-3.5-turbo")
         tokens_in_prompt = len(encoder.encode(system_msg + user_prompt))
-        print(f"🧮 Tokens in prompt: {tokens_in_prompt}")
-        response = client.chat.completions.create(
+        logger.info(f"🧮 Tokens in prompt: {tokens_in_prompt}")
+
+        response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": system_msg},
@@ -149,14 +176,12 @@ Return your answer in strict JSON format, for example:
             temperature=0,
             max_tokens=150,
         )
-        content = response.choices[0].message.content
+        content = response.choices[0].message["content"]
         return json.loads(content)
     except Exception as e:
-        print(f"Error: {e}")
-        # Fallback mock
+        logger.error(f"OpenAI Judge fallback: {e}")
         return {
             "relevance": random.randint(0, 10),
             "brandability": random.randint(0, 10),
             "safe": random.choice([True, False]),
         }
-
