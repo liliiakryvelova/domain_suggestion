@@ -1,138 +1,119 @@
-# Domain Suggestion LLM Project
+# Domain Suggester GPT-2
 
-## 1. Methodology & Initial Results
+This project contains a fine-tuned GPT-2 model that suggests potential domain names based on user-provided business descriptions. The model is trained using Hugging Face Transformers and hosted via a FastAPI backend.
 
-### Dataset Creation Approach and Baseline Model Selection
-- The dataset (`synthetic_dataset_v1.json`) was created to cover a variety of business descriptions, simulating real-world use cases.
-- A fine-tuned GPT-2 model (`sshleifer/tiny-gpt2`) is used as the baseline for domain name generation.
-- The baseline model generates multiple domain name suggestions per business description.
+## 🚀 Features
 
-### Initial Model Performance and Evaluation Metrics
-- Each generated domain is evaluated using an LLM-based judge (OpenAI GPT-3.5-turbo) for three metrics: relevance, brandability, and safety.
-- Results are saved in `eval_results.json` for further analysis.
+- Fine-tuned GPT-2 model
+- FastAPI REST API with `/suggest` endpoint
+- Works with custom business-related prompts
+- Hosted on Render (or run locally)
 
-## 2. Edge Case Analysis
+## 📦 Repository Structure
 
-### Discovery Process
-- Edge cases are identified by analyzing the evaluation results in the notebook `02_edge_case_analysis.ipynb`.
-- The process includes sorting and filtering domains by low scores and unsafe flags.
+```
+domain-suggester-gpt2/
+├── scripts/
+│   └── api.py                 # FastAPI backend for serving suggestions
+├── local_model_finetuned/     # Fine-tuned GPT-2 model
+│   ├── config.json
+│   ├── merges.txt
+│   ├── vocab.json
+│   ├── tokenizer_config.json
+│   ├── tokenizer.json         # Optional, added if tokenizer is fast-compatible
+│   └── pytorch_model.bin      # Main model weights
+├── gpt2_finetune.py           # Training script
+└── README.md
+```
 
-### Failure Taxonomy
-- Failures are categorized as:
-  - Unsafe (flagged by OpenAI Moderation API)
-  - Low relevance (score < 5)
-  - Low brandability (score < 5)
-- Examples and counts for each category are provided in the notebook.
+## 🧠 Model Training
 
-### Frequency Analysis
-- The notebook computes the frequency of each failure type using value counts and summary statistics.
+The model is fine-tuned on a custom dataset of domain-style phrases. You can train your own using the `gpt2_finetune.py` script.
 
-## 3. Iterative Improvement
+### Training Script
 
-### Improvement Strategies
-- Iterative changes are made to the prompt, model parameters, and filtering logic to improve domain quality.
-- Each change is documented in the notebook, with rationale for the adjustment.
+```bash
+python gpt2_finetune.py
+```
 
-### Quantified Results
-- Before/after metrics are recorded for each iteration, showing improvements in relevance, brandability, and safety.
+Key hyperparameters:
+- Epochs: 3
+- Batch size: 2
+- Max length: 64
+- Tokenizer: `GPT2Tokenizer` with `eos_token` as padding
 
-### LLM Judge Validation
-- The LLM judge's consistency is checked by reviewing outputs and, if needed, manually inspecting edge cases.
-- Fallback logic is implemented for API quota errors to ensure robust evaluation.
+## 🧪 Example Usage
 
-## 4. Model Comparison & Recommendations
+```python
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
-### Performance Comparison
-- Multiple model versions or parameter settings are compared using statistical analysis (e.g., mean, std, and significance tests in the notebook).
+model = GPT2LMHeadModel.from_pretrained("local_model_finetuned")
+tokenizer = GPT2Tokenizer.from_pretrained("local_model_finetuned")
+model.eval()
 
-### Production Readiness
-- The most robust and highest-performing model version is recommended for deployment, based on evaluation metrics and error handling.
+prompt = "Welcome to our smart"
+inputs = tokenizer(prompt, return_tensors="pt")
 
-### Future Improvements
-- Suggestions include:
-  - Expanding the dataset with more diverse business types
-  - Further fine-tuning the model
-  - Improving the LLM judge with ensemble or human-in-the-loop validation
-  - Adding more granular failure categories
+outputs = model.generate(
+    **inputs,
+    max_length=50,
+    num_return_sequences=1,
+    do_sample=True,
+    top_k=50,
+    top_p=0.95,
+    temperature=0.9,
+    pad_token_id=tokenizer.eos_token_id,
+)
 
-## API Development (Optional)
-- The current project does not expose an API, but the codebase can be easily extended with a FastAPI or Flask endpoint for real-time domain evaluation.
+print(tokenizer.decode(outputs[0], skip_special_tokens=True))
+```
 
-## API Usage Examples
+## 🌐 API Endpoint
 
-### Generate Domains (Safe Request)
+### Endpoint: `/suggest`
 
 **Request:**
 ```json
-POST /generate-domains
 {
-  "business_description": "organic coffee shop in downtown area",
-  "num_domains": 3
+  "prompt": "business description here"
 }
 ```
+
 **Response:**
 ```json
 {
   "suggestions": [
-    {"domain": "organicbeanscafe.com", "confidence": 0.92},
-    {"domain": "downtowncoffee.org", "confidence": 0.87},
-    {"domain": "freshbreworganic.net", "confidence": 0.83}
-  ],
-  "status": "success"
+    {
+      "domain": "acmallbrand.com",
+      "confidence": 0.84
+    }
+  ]
 }
 ```
 
-### Generate Domains (Blocked/Unsafe Request)
+## 📤 Upload to Hugging Face Hub
 
-**Request:**
-```json
-POST /generate-domains
-{
-  "business_description": "adult content website with explicit nude content",
-  "num_domains": 3
-}
-```
-**Response:**
-```json
-{
-  "suggestions": [],
-  "status": "blocked",
-  "message": "Request contains inappropriate content"
-}
+```python
+from huggingface_hub import login, create_repo, upload_folder
+
+login(token="your_hf_token")
+repo_id = "your-username/domain-suggester-gpt2"
+create_repo(repo_id=repo_id, repo_type="model", exist_ok=True)
+upload_folder(repo_id=repo_id, folder_path="local_model_finetuned", repo_type="model")
 ```
 
-### Judge Domain (Example)
+## ⚠️ Known Issues
 
-**Request:**
-```json
-POST /judge-domain
-{
-  "domain": "genzai.com",
-  "description": "AI SaaS for Gen Z"
-}
-```
-**Response:**
-```json
-{
-  "relevance": 10,
-  "brandability": 5,
-  "safe": true
-}
-```
+- `tokenizer.json` may be missing if you use `GPT2Tokenizer` instead of `GPT2TokenizerFast`.
+- Use `PreTrainedTokenizerFast` for Hugging Face Hub compatibility.
+- If Colab download fails due to size, use Google Drive or upload directly to Hugging Face.
 
-## Technologies Used
+## 📄 License
 
-- **Python 3.10+** — Core programming language
-- **PyTorch** — For running and fine-tuning the GPT-2 model
-- **Transformers (Hugging Face)** — Model and tokenizer management
-- **OpenAI API** — LLM-based domain scoring and moderation
-- **tiktoken** — Token counting for prompt management
-- **FastAPI** — REST API for domain generation and evaluation
-- **Uvicorn** — ASGI server for running FastAPI
-- **pandas** — Data analysis in notebooks
-- **Jupyter Notebook** — For analysis, edge case exploration, and reporting
-- **dotenv** — Environment variable management
+MIT License. This is an open-source academic/experimental project.
 
----
+## 🤝 Contact
 
-**For details and code, see the scripts and notebooks in this repository.**
+Developed by **Liliia Kryvelova**  
+📫 [LinkedIn](https://www.linkedin.com/in/liliiakryvelova/)  
+📧 lilia.krivelyova@gmail.com
