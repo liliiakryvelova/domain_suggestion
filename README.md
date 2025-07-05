@@ -35,12 +35,14 @@ domain_suggestion/
 
 ## 🧠 Model Training
 
-The model is fine-tuned on a custom dataset of domain-style phrases. You can train your own using the `gpt2_finetune.py` script.
+The model is fine-tuned on a custom dataset of domain-style phrases. You can train your own using the `notebooks/gpt2_model_training.ipynb` script.
 
-### Training Script
+### Training Notebook
 
-```bash
-python gpt2_finetune.py
+All code for training the model is provided in the Jupyter notebook:
+
+```
+notebooks/gpt2_model_training.ipynb
 ```
 
 Key hyperparameters:
