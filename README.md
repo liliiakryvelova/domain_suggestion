@@ -100,6 +100,48 @@ print(tokenizer.decode(outputs[0], skip_special_tokens=True))
 }
 ```
 
+## ▶️ Running and Testing the API Locally
+
+You can run the FastAPI backend locally to test domain name suggestions.
+
+### 1. Start the API server
+
+In your terminal, navigate to the project directory and run:
+
+```bash
+uvicorn scripts.api:app --reload
+```
+
+By default, the API will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+### 2. Test the `/suggest` endpoint
+
+You can test the API using [Swagger UI](http://127.0.0.1:8000/docs) or with a tool like `curl` or Postman.
+
+**Example using `curl`:**
+
+```bash
+curl -X POST "http://127.0.0.1:8000/suggest" \
+     -H "Content-Type: application/json" \
+     -d '{"prompt": "A platform for smart home automation"}'
+```
+
+You should receive a JSON response with domain suggestions.
+
+**Tip:**  
+You can also open [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) in your browser for an interactive API documentation.
+
+### Example Business Descriptions for Testing
+
+- "A platform for smart home automation"
+- "Online marketplace for handmade crafts"
+- "AI-powered personal finance assistant"
+- "Subscription box for healthy snacks"
+- "Virtual fitness coaching for remote teams"
+- "Eco-friendly cleaning products store"
+- "Pet care and grooming booking service"
+- "Language learning app"
+
 ## 📤 Upload to Hugging Face Hub
 
 ```python
