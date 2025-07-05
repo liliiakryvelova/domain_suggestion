@@ -12,17 +12,24 @@ This project contains a fine-tuned GPT-2 model that suggests potential domain na
 ## 📦 Repository Structure
 
 ```
-domain-suggester-gpt2/
+domain_suggestion/
 ├── scripts/
-│   └── api.py                 # FastAPI backend for serving suggestions
-├── local_model_finetuned/     # Fine-tuned GPT-2 model
+│   ├── api.py                 # FastAPI backend for serving suggestions
+│   └── dataset_creation.py    # Script to generate training data
+├── data/                      # Folder with generated and training data
+│   ├── generated_data.json    # Example generated data file
+│   └── synthetic_dataset_v1   # Main training data
+├── local_model_finetuned/     # Fine-tuned GPT-2 model files
 │   ├── config.json
 │   ├── merges.txt
 │   ├── vocab.json
 │   ├── tokenizer_config.json
 │   ├── tokenizer.json         # Optional, added if tokenizer is fast-compatible
 │   └── pytorch_model.bin      # Main model weights
-├── gpt2_finetune.py           # Training script
+├── docs/                      # UI and documentation files
+│   └── index.html             # Main UI file
+├── notebooks/                 # Jupyter notebooks for experiments and training
+│   └── gpt2_model_training.ipynb  # Notebook for training the GPT-2 model
 └── README.md
 ```
 
