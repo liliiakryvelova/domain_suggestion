@@ -73,6 +73,18 @@ def root():
 
 @app.post("/generate-domains")
 def generate_domains_api(req: DomainRequest):
+    # Validate number of domains requested
+    if req.num_domains < 1:
+        raise HTTPException(status_code=400, detail="Number of domains must be at least 1")
+    if req.num_domains > 10:
+        raise HTTPException(status_code=400, detail="Maximum 10 domains can be requested at once")
+    
+    # Validate business description
+    if len(req.business_description.strip()) == 0:
+        raise HTTPException(status_code=400, detail="Business description cannot be empty")
+    if len(req.business_description) > 500:
+        raise HTTPException(status_code=400, detail="Business description too long (max 500 characters)")
+    
     # Safety check using OpenAI Moderation (new API)
     try:
         mod = client.moderations.create(

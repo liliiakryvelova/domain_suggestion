@@ -4,10 +4,14 @@ This project contains a fine-tuned GPT-2 model that suggests potential domain na
 
 ## 🚀 Features
 
-- Fine-tuned GPT-2 model
-- FastAPI REST API with `/suggest` endpoint
-- Works with custom business-related prompts
-- Hosted on Render (or run locally)
+- **Fine-tuned GPT-2 model** for domain name generation
+- **FastAPI REST API** with comprehensive endpoints
+- **Modern Web UI** with responsive design
+- **Light/Dark theme toggle** with user preference persistence
+- **Content safety filtering** using OpenAI Moderation API
+- **Real-time domain validation** and quality scoring
+- **Click-to-copy functionality** for generated domains
+- **Hosted on Render** (or run locally)
 
 ## 📦 Repository Structure
 
@@ -77,14 +81,17 @@ outputs = model.generate(
 print(tokenizer.decode(outputs[0], skip_special_tokens=True))
 ```
 
-## 🌐 API Endpoint
+## 🌐 API Endpoints
 
-### Endpoint: `/suggest`
+### Endpoint: `/generate-domains`
+
+Generate domain name suggestions based on business description.
 
 **Request:**
 ```json
 {
-  "prompt": "business description here"
+  "business_description": "AI-powered fitness app",
+  "num_domains": 5
 }
 ```
 
@@ -93,12 +100,89 @@ print(tokenizer.decode(outputs[0], skip_special_tokens=True))
 {
   "suggestions": [
     {
-      "domain": "acmallbrand.com",
-      "confidence": 0.84
+      "domain": "aifitness.com",
+      "confidence": 0.92
+    },
+    {
+      "domain": "smartworkout.net",
+      "confidence": 0.87
     }
-  ]
+  ],
+  "status": "success"
 }
 ```
+
+### Endpoint: `/judge-domain`
+
+Analyze and score domain quality for a specific business.
+
+**Request:**
+```json
+{
+  "domain": "aifitness.com",
+  "description": "AI-powered fitness app"
+}
+```
+
+**Response:**
+```json
+{
+  "relevance": 9,
+  "brandability": 8,
+  "safe": true
+}
+```
+
+## 🛡️ Content Safety & Security
+
+### Content Moderation
+
+The API includes built-in content safety features to ensure responsible use:
+
+- **OpenAI Moderation API**: All business descriptions are automatically screened for harmful content
+- **Real-time Filtering**: Unsafe prompts are blocked before processing
+- **Domain Validation**: Generated domains are validated for appropriateness
+
+### Safety Features
+
+1. **Input Validation**: 
+   - Blocks offensive, harmful, or inappropriate business descriptions
+   - Prevents generation of domains for illegal activities
+   - Filters hate speech, harassment, and self-harm content
+
+2. **Output Filtering**:
+   - Generated domains are checked for safety
+   - Inappropriate domain suggestions are automatically removed
+   - Quality scoring includes safety assessments
+
+3. **Rate Limiting**:
+   - Domain generation limited to 1-10 suggestions per request
+   - Prevents abuse and ensures fair usage
+
+### Unsafe Content Examples
+
+The system automatically blocks requests containing:
+- Hate speech or discriminatory language
+- Violence or harassment content
+- Self-harm or dangerous activities
+- Illegal services or products
+- Adult content or explicit material
+- Scams or fraudulent schemes
+
+### Error Responses
+
+When unsafe content is detected, the API returns:
+
+```json
+{
+  "status": "blocked",
+  "message": "Content flagged by safety filters"
+}
+```
+
+### Reporting Issues
+
+If you encounter any inappropriate content that wasn't caught by our filters, please report it to: lilia.krivelyova@gmail.com
 
 ## ▶️ Running and Testing the API Locally
 
@@ -114,22 +198,56 @@ uvicorn scripts.api:app --reload
 
 By default, the API will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
-### 2. Test the `/suggest` endpoint
+### 2. Test the API endpoints
 
 You can test the API using [Swagger UI](http://127.0.0.1:8000/docs) or with a tool like `curl` or Postman.
 
-**Example using `curl`:**
+**Example 1: Generate domain suggestions**
 
 ```bash
-curl -X POST "http://127.0.0.1:8000/suggest" \
+curl -X POST "http://127.0.0.1:8000/generate-domains" \
      -H "Content-Type: application/json" \
-     -d '{"prompt": "A platform for smart home automation"}'
+     -d '{"business_description": "AI-powered fitness app", "num_domains": 3}'
 ```
 
-You should receive a JSON response with domain suggestions.
+**Example 2: Judge domain quality**
+
+```bash
+curl -X POST "http://127.0.0.1:8000/judge-domain" \
+     -H "Content-Type: application/json" \
+     -d '{"domain": "aifitness.com", "description": "AI-powered fitness app"}'
+```
+
+You should receive JSON responses with domain suggestions or quality scores.
 
 **Tip:**  
 You can also open [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) in your browser for an interactive API documentation.
+
+## 🎨 Web Interface
+
+The project includes a modern, responsive web interface accessible at `docs/index.html`.
+
+### UI Features
+
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Light/Dark Mode**: Toggle between themes with preference persistence
+- **Real-time Generation**: Live domain suggestions with animated loading
+- **Interactive Elements**: Click-to-copy domains with visual feedback
+- **Quality Indicators**: Confidence scores and safety badges
+- **Modern Styling**: Glass-morphism design with smooth animations
+
+### Accessing the UI
+
+1. **Local Development**: Open `docs/index.html` in your browser
+2. **GitHub Pages**: Visit your deployed GitHub Pages URL
+3. **With API**: Ensure the API is running for full functionality
+
+### Theme Toggle
+
+The UI includes a persistent light/dark mode toggle:
+- **Dark Mode**: Default theme with blue/purple gradients
+- **Light Mode**: Clean white theme with subtle accents
+- **Auto-save**: User preference is saved to localStorage
 
 ### Example Business Descriptions for Testing
 

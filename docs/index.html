@@ -5,128 +5,484 @@
   <title>Domain Suggestion Demo</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Montserrat', Arial, sans-serif;
+    :root {
+      /* Dark theme (default) */
+      --bg-primary: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+      --bg-container: rgba(30, 41, 59, 0.4);
+      --bg-input: rgba(15, 23, 42, 0.6);
+      --bg-result: rgba(15, 23, 42, 0.8);
+      --bg-domain: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      --text-primary: #e2e8f0;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-placeholder: #64748b;
+      --border-color: rgba(148, 163, 184, 0.2);
+      --border-focus: #3b82f6;
+      --shadow-main: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+      --gradient-bg-animated: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
+    }
+
+    [data-theme="light"] {
+      /* Light theme */
+      --bg-primary: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+      --bg-container: rgba(255, 255, 255, 0.9);
+      --bg-input: rgba(255, 255, 255, 0.8);
+      --bg-result: rgba(248, 250, 252, 0.9);
+      --bg-domain: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      --text-primary: #1e293b;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --text-placeholder: #94a3b8;
+      --border-color: rgba(148, 163, 184, 0.3);
+      --border-focus: #3b82f6;
+      --shadow-main: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --gradient-bg-animated: 
+        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.06) 0%, transparent 50%);
+    }
+
+    * {
       margin: 0;
-      background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg-primary);
       min-height: 100vh;
+      color: var(--text-primary);
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+      transition: all 0.3s ease;
     }
+    
+    /* Animated background elements */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-bg-animated);
+      z-index: -1;
+      animation: backgroundShift 20s ease-in-out infinite;
+      transition: all 0.3s ease;
+    }
+    
+    @keyframes backgroundShift {
+      0%, 100% { transform: translateX(0) translateY(0); }
+      50% { transform: translateX(-20px) translateY(-20px); }
+    }
+    
     .container {
-      max-width: 600px;
-      margin: 3em auto;
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 4px 24px rgba(80, 80, 180, 0.08);
-      padding: 2.5em 2em 2em 2em;
+      max-width: 700px;
+      margin: 2em auto;
+      background: var(--bg-container);
+      border-radius: 24px;
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      padding: 3em 2.5em;
+      box-shadow: var(--shadow-main), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      position: relative;
+      transition: all 0.3s ease;
     }
+    
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
+    }
+    
     h1 {
       text-align: center;
-      color: #3730a3;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 2.5rem;
+      font-weight: 800;
       margin-bottom: 0.5em;
+      position: relative;
+      animation: titleGlow 3s ease-in-out infinite alternate;
     }
+    
+    @keyframes titleGlow {
+      0% { filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.3)); }
+      100% { filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.5)); }
+    }
+    
+    .subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.95em;
+      margin-bottom: 3em;
+      font-weight: 300;
+      transition: color 0.3s ease;
+    }
+    
     h2 {
-      color: #6366f1;
-      margin-top: 2em;
-      margin-bottom: 0.5em;
+      color: var(--text-primary);
+      margin: 3em 0 1.5em 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+      position: relative;
+      padding-left: 20px;
+      transition: color 0.3s ease;
     }
+    
+    h2::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 20px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      border-radius: 2px;
+    }
+    
     label {
       font-weight: 600;
-      color: #4f46e5;
+      color: var(--text-secondary);
+      display: block;
+      margin-bottom: 0.5em;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: color 0.3s ease;
     }
+    
     textarea, input[type="text"], input[type="number"] {
       width: 100%;
-      padding: 0.7em;
-      border: 1px solid #c7d2fe;
-      border-radius: 8px;
-      margin-bottom: 1em;
-      font-size: 1em;
-      background: #f1f5f9;
-      transition: border 0.2s;
+      padding: 1em 1.2em;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      margin-bottom: 1.5em;
+      font-size: 1rem;
+      background: var(--bg-input);
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
     }
+    
     textarea:focus, input:focus {
-      border: 1.5px solid #6366f1;
+      border: 1px solid var(--border-focus);
       outline: none;
+      box-shadow: 
+        0 0 0 3px rgba(59, 130, 246, 0.1),
+        0 0 20px rgba(59, 130, 246, 0.2);
+      transform: translateY(-2px);
     }
+    
+    textarea::placeholder, input::placeholder {
+      color: var(--text-placeholder);
+      transition: color 0.3s ease;
+    }
+    
+    .input-hint {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin: -1em 0 1.5em 0;
+      font-style: italic;
+      opacity: 0.9;
+      transition: color 0.3s ease;
+    }
+    
     button {
-      background: linear-gradient(90deg, #6366f1 0%, #818cf8 100%);
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
       color: #fff;
       border: none;
-      border-radius: 8px;
-      padding: 0.7em 1.5em;
-      font-size: 1em;
+      border-radius: 12px;
+      padding: 1em 2em;
+      font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
-      margin-bottom: 1em;
-      transition: background 0.2s, transform 0.1s;
+      margin-bottom: 1.5em;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
     }
+    
     button:hover {
-      background: linear-gradient(90deg, #3730a3 0%, #6366f1 100%);
-      transform: translateY(-2px) scale(1.03);
+      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
     }
+    
+    button:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+    
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    button:hover::before {
+      left: 100%;
+    }
+    
     .result {
-      margin-top: 1em;
-      padding: 1.2em 1em;
-      border-radius: 10px;
-      background: #f1f5f9;
-      border: 1px solid #c7d2fe;
-      font-size: 1.05em;
-      min-height: 2em;
+      margin-top: 1.5em;
+      padding: 1.5em;
+      border-radius: 16px;
+      background: var(--bg-result);
+      border: 1px solid var(--border-color);
+      font-size: 1rem;
+      min-height: 3em;
       word-break: break-word;
+      backdrop-filter: blur(10px);
+      position: relative;
+      transition: all 0.3s ease;
     }
+    
+    .result:empty {
+      display: none;
+    }
+    
     .domain-list {
       list-style: none;
       padding: 0;
-      margin: 0.5em 0 0 0;
+      margin: 1em 0 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
+    
     .domain-list li {
-      background: #6366f1;
-      color: #fff;
-      display: inline-block;
-      margin: 0.2em 0.4em 0.2em 0;
-      padding: 0.4em 1em;
-      border-radius: 20px;
+      background: var(--bg-domain);
+      color: var(--text-primary);
+      padding: 0.8em 1.5em;
+      border-radius: 25px;
       font-weight: 600;
-      font-size: 1em;
-      box-shadow: 0 1px 4px rgba(99, 102, 241, 0.08);
-      letter-spacing: 0.01em;
+      font-size: 0.95rem;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      animation: slideInUp 0.6s ease forwards;
+      opacity: 0;
+      transform: translateY(30px);
     }
+    
+    .domain-list li:nth-child(1) { animation-delay: 0.1s; }
+    .domain-list li:nth-child(2) { animation-delay: 0.2s; }
+    .domain-list li:nth-child(3) { animation-delay: 0.3s; }
+    .domain-list li:nth-child(4) { animation-delay: 0.4s; }
+    .domain-list li:nth-child(5) { animation-delay: 0.5s; }
+    
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .domain-list li:hover {
+      transform: translateY(-5px) scale(1.05);
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+      border-color: #3b82f6;
+    }
+    
     .score-badge {
       display: inline-block;
-      background: #818cf8;
-      color: #fff;
-      border-radius: 12px;
-      padding: 0.2em 0.7em;
-      margin-left: 0.5em;
-      font-size: 0.95em;
-      font-weight: 600;
+      background: rgba(59, 130, 246, 0.2);
+      color: #3b82f6;
+      border-radius: 8px;
+      padding: 0.3em 0.8em;
+      margin-left: 0.8em;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: 1px solid rgba(59, 130, 246, 0.3);
     }
-    @media (max-width: 700px) {
-      .container { padding: 1em; }
-      h1 { font-size: 1.5em; }
+    
+    .loading {
+      display: flex;
+      align-items: center;
+      color: #3b82f6;
+      font-style: italic;
+      font-weight: 500;
+    }
+    
+    .loading::after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      margin-left: 15px;
+      border: 2px solid rgba(59, 130, 246, 0.2);
+      border-top: 2px solid #3b82f6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .copy-hint {
+      color: var(--text-placeholder);
+      font-size: 0.8rem;
+      margin-top: 1em;
+      text-align: center;
+      opacity: 0.8;
+      transition: color 0.3s ease;
+    }
+    
+    .notification {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 12px;
+      z-index: 1000;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+      animation: slideInRight 0.3s ease;
+    }
+    
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Theme Toggle Button */
+    .theme-toggle {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      background: var(--bg-container);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-main);
+      z-index: 100;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1) rotate(15deg);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.95);
+    }
+    
+    @media (max-width: 768px) {
+      .theme-toggle {
+        top: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .container { 
+        margin: 1em;
+        padding: 2em 1.5em; 
+      }
+      h1 { 
+        font-size: 2rem; 
+      }
+      .domain-list {
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" onclick="toggleTheme()" title="Switch theme">
+    <span id="theme-icon">🌙</span>
+  </button>
+  
   <div class="container">
-    <h1>Domain Suggestion LLM Demo</h1>
-    <h2>Generate Domains</h2>
-    <label for="desc">Business description</label>
-    <textarea id="desc" rows="2" placeholder="Describe your business idea..."></textarea>
-    <label for="num">Number of suggestions</label>
+    <h1>AI Domain Genius</h1>
+    <p class="subtitle">Powered by fine-tuned GPT-2 • Created by Liliia Kryvelova</p>
+    
+    <h2>🚀 Generate Domains</h2>
+    <label for="desc">Business Description</label>
+    <textarea id="desc" rows="3" placeholder="Describe your revolutionary business idea..."></textarea>
+    <label for="num">Number of Suggestions</label>
     <input id="num" type="number" min="1" max="10" value="3">
-    <button onclick="generateDomains()">Generate</button>
+    <p class="input-hint">💡 Choose between 1-10 domain suggestions</p>
+    <button onclick="generateDomains()">✨ Generate Magic</button>
     <div id="genResult" class="result"></div>
 
-    <h2>Judge Domain</h2>
-    <label for="domain">Domain name</label>
-    <input id="domain" type="text" placeholder="e.g. mybrand.com" id="domain">
-    <label for="domainDesc">Business description</label>
-    <input id="domainDesc" type="text" placeholder="Describe your business..." id="domainDesc">
-    <button onclick="judgeDomain()">Judge</button>
+    <h2>⚖️ Judge Domain</h2>
+    <label for="domain">Domain Name</label>
+    <input id="domain" type="text" placeholder="e.g. mynextbigidea.com">
+    <label for="domainDesc">Business Description</label>
+    <input id="domainDesc" type="text" placeholder="What does your business do?">
+    <button onclick="judgeDomain()">🔍 Analyze Quality</button>
     <div id="judgeResult" class="result"></div>
   </div>
   <script>
+    // Theme Management
+    function initializeTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+    }
+
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    }
+
+    function updateThemeIcon(theme) {
+      const icon = document.getElementById('theme-icon');
+      icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Initialize theme on page load
+    initializeTheme();
+
     // Change this to your deployed API URL or local backend
     // For local development, use: const API_BASE = "http://127.0.0.1:8000";
     // For production, use your deployed backend URL:
@@ -135,48 +491,101 @@
 
     function renderDomains(data) {
       if (data.status === "blocked") {
-        return `<span style='color:#dc2626;font-weight:600;'>${data.message}</span>`;
+        return `<span style='color:#ef4444;font-weight:600;'>⚠️ ${data.message}</span>`;
       }
-      if (!data.suggestions || !data.suggestions.length) return "No suggestions.";
+      if (!data.suggestions || !data.suggestions.length) return "<span style='color:#64748b;'>No suggestions found. Try a different description!</span>";
       return `<ul class='domain-list'>` +
-        data.suggestions.map(s => `<li>${s.domain}<span class='score-badge'>${(s.confidence*100).toFixed(0)}%</span></li>`).join('') +
-        `</ul>`;
+        data.suggestions.map(s => `<li onclick="copyToClipboard('${s.domain}')" title="Click to copy!">${s.domain}<span class='score-badge'>${(s.confidence*100).toFixed(0)}%</span></li>`).join('') +
+        `</ul><p class="copy-hint">💡 Click any domain to copy it to your clipboard</p>`;
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        // Show notification
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.textContent = `✅ Copied "${text}" to clipboard!`;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 3000);
+      });
     }
 
     function renderJudge(data) {
       if (data.safe === false) {
-        return `<span style='color:#dc2626;font-weight:600;'>Unsafe or inappropriate domain.</span>`;
+        return `<span style='color:#ef4444;font-weight:600;'>🚫 Unsafe or inappropriate domain detected.</span>`;
       }
       if (data.relevance !== undefined && data.brandability !== undefined) {
-        return `<div>Relevance: <span class='score-badge'>${data.relevance}/10</span> &nbsp; Brandability: <span class='score-badge'>${data.brandability}/10</span> &nbsp; Safe: <span class='score-badge' style='background:#10b981;'>${data.safe ? 'Yes' : 'No'}</span></div>`;
+        const relevanceColor = data.relevance >= 7 ? '#10b981' : data.relevance >= 4 ? '#f59e0b' : '#ef4444';
+        const brandabilityColor = data.brandability >= 7 ? '#10b981' : data.brandability >= 4 ? '#f59e0b' : '#ef4444';
+        return `<div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #cbd5e1;">Relevance:</span>
+            <span class='score-badge' style='background: ${relevanceColor}; color: white; border-color: ${relevanceColor};'>${data.relevance}/10</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #cbd5e1;">Brandability:</span>
+            <span class='score-badge' style='background: ${brandabilityColor}; color: white; border-color: ${brandabilityColor};'>${data.brandability}/10</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #cbd5e1;">Safety:</span>
+            <span class='score-badge' style='background: #10b981; color: white; border-color: #10b981;'>${data.safe ? '✅ Safe' : '❌ Unsafe'}</span>
+          </div>
+        </div>`;
       }
-      return `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      return `<pre style="color: #64748b; font-size: 0.9rem;">${JSON.stringify(data, null, 2)}</pre>`;
     }
 
     async function generateDomains() {
       const desc = document.getElementById('desc').value;
       const num = parseInt(document.getElementById('num').value, 10);
-      document.getElementById('genResult').innerHTML = '<em>Loading...</em>';
-      const res = await fetch(`${API_BASE}/generate-domains`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ business_description: desc, num_domains: num })
-      });
-      const data = await res.json();
-      document.getElementById('genResult').innerHTML = renderDomains(data);
+      
+      if (!desc.trim()) {
+        document.getElementById('genResult').innerHTML = '<span style="color:#f59e0b;">Please enter a business description first! 💭</span>';
+        return;
+      }
+      
+      if (num < 1 || num > 10 || isNaN(num)) {
+        document.getElementById('genResult').innerHTML = '<span style="color:#f59e0b;">⚠️ Please choose between 1-10 domain suggestions!</span>';
+        return;
+      }
+      
+      document.getElementById('genResult').innerHTML = '<div class="loading">Generating brilliant domains...</div>';
+      
+      try {
+        const res = await fetch(`${API_BASE}/generate-domains`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ business_description: desc, num_domains: num })
+        });
+        const data = await res.json();
+        document.getElementById('genResult').innerHTML = renderDomains(data);
+      } catch (error) {
+        document.getElementById('genResult').innerHTML = '<span style="color:#ef4444;">🚨 Connection error. Please try again!</span>';
+      }
     }
 
     async function judgeDomain() {
       const domain = document.getElementById('domain').value;
       const desc = document.getElementById('domainDesc').value;
-      document.getElementById('judgeResult').innerHTML = '<em>Loading...</em>';
-      const res = await fetch(`${API_BASE}/judge-domain`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ domain, description: desc })
-      });
-      const data = await res.json();
-      document.getElementById('judgeResult').innerHTML = renderJudge(data);
+      
+      if (!domain.trim() || !desc.trim()) {
+        document.getElementById('judgeResult').innerHTML = '<span style="color:#f59e0b;">Please fill in both domain and description! 📝</span>';
+        return;
+      }
+      
+      document.getElementById('judgeResult').innerHTML = '<div class="loading">Analyzing domain quality...</div>';
+      
+      try {
+        const res = await fetch(`${API_BASE}/judge-domain`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ domain, description: desc })
+        });
+        const data = await res.json();
+        document.getElementById('judgeResult').innerHTML = renderJudge(data);
+      } catch (error) {
+        document.getElementById('judgeResult').innerHTML = '<span style="color:#ef4444;">🚨 Connection error. Please try again!</span>';
+      }
     }
   </script>
 </body>
