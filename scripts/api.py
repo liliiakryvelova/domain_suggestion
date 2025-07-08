@@ -47,14 +47,18 @@ except Exception as e:
     logger.info(f"✅ Local model loaded successfully on {device}")
 
 # Initialize FastAPI app
-app = FastAPI()
+app = FastAPI(
+    title="Domain Suggester API",
+    description="AI-powered domain name suggestions for businesses",
+    version="1.0.0"
+)
 
-# Allow frontend CORS
+# Allow frontend CORS - more permissive for development
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://liliiakryvelova.github.io", "http://localhost:8080", "http://127.0.0.1:8080"],
+    allow_origins=["*"],  # Allow all origins for now
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "HEAD", "OPTIONS"],
     allow_headers=["*"],
 )
 
@@ -68,8 +72,14 @@ class JudgeRequest(BaseModel):
     description: str
 
 @app.get("/")
+@app.head("/")
 def root():
-    return {"message": "✅ Domain Suggestion API is live"}
+    return {"message": "✅ Domain Suggestion API is live", "status": "healthy", "version": "1.0.0"}
+
+@app.get("/health")
+@app.head("/health")
+def health_check():
+    return {"status": "healthy", "timestamp": "2025-01-07", "service": "domain-suggester"}
 
 @app.post("/generate-domains")
 def generate_domains_api(req: DomainRequest):
