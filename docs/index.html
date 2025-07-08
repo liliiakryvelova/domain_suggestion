@@ -356,14 +356,29 @@
       position: fixed;
       top: 30px;
       right: 30px;
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       color: white;
       padding: 15px 25px;
       border-radius: 12px;
       z-index: 1000;
       font-weight: 600;
-      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
       animation: slideInRight 0.3s ease;
+      max-width: 350px;
+      word-wrap: break-word;
+    }
+    
+    .notification.success {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+    }
+    
+    .notification.error {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+    }
+    
+    .notification.warning {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
     }
     
     @keyframes slideInRight {
@@ -486,7 +501,7 @@
     // Change this to your deployed API URL or local backend
     // For local development, use: const API_BASE = "http://127.0.0.1:8000";
     // For production, use your deployed backend URL:
-    const API_BASE = "https://domain-suggestion.onrender.com"; 
+    const API_BASE = "http://localhost:8000"; 
     // const API_BASE = "http://127.0.0.1:8000";
 
     function renderDomains(data) {
@@ -499,14 +514,21 @@
         `</ul><p class="copy-hint">💡 Click any domain to copy it to your clipboard</p>`;
     }
 
+    // Show notification helper function
+    function showNotification(message, type = 'success', duration = 5000) {
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.textContent = message;
+      document.body.appendChild(notification);
+      setTimeout(() => notification.remove(), duration);
+    }
+
     function copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
         // Show notification
-        const notification = document.createElement('div');
-        notification.className = 'notification';
-        notification.textContent = `✅ Copied "${text}" to clipboard!`;
-        document.body.appendChild(notification);
-        setTimeout(() => notification.remove(), 3000);
+        showNotification(`✅ Copied "${text}" to clipboard!`, 'success', 3000);
+      }).catch(() => {
+        showNotification('❌ Failed to copy to clipboard', 'error', 3000);
       });
     }
 
@@ -557,9 +579,34 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ business_description: desc, num_domains: num })
         });
+        
+        if (res.status === 429) {
+          const errorData = await res.json().catch(() => ({}));
+          const retryAfter = res.headers.get('Retry-After') || 'a few seconds';
+          showNotification(
+            `🚦 Rate limit exceeded! Please wait ${retryAfter} before trying again.`, 
+            'warning', 
+            8000
+          );
+          document.getElementById('genResult').innerHTML = 
+            '<span style="color:#f59e0b;">⏱️ Rate limit exceeded. Please wait a moment and try again.</span>';
+          return;
+        }
+        
+        if (!res.ok) {
+          const errorData = await res.json().catch(() => ({}));
+          const errorMessage = errorData.message || `HTTP ${res.status}: ${res.statusText}`;
+          showNotification(`❌ API Error: ${errorMessage}`, 'error', 6000);
+          document.getElementById('genResult').innerHTML = 
+            `<span style="color:#ef4444;">🚨 API Error: ${errorMessage}</span>`;
+          return;
+        }
+        
         const data = await res.json();
         document.getElementById('genResult').innerHTML = renderDomains(data);
       } catch (error) {
+        console.error('Request failed:', error);
+        showNotification('🔌 Connection failed. Please check your internet and try again.', 'error', 6000);
         document.getElementById('genResult').innerHTML = '<span style="color:#ef4444;">🚨 Connection error. Please try again!</span>';
       }
     }
@@ -581,9 +628,34 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ domain, description: desc })
         });
+        
+        if (res.status === 429) {
+          const errorData = await res.json().catch(() => ({}));
+          const retryAfter = res.headers.get('Retry-After') || 'a few seconds';
+          showNotification(
+            `🚦 Rate limit exceeded! Please wait ${retryAfter} before trying again.`, 
+            'warning', 
+            8000
+          );
+          document.getElementById('judgeResult').innerHTML = 
+            '<span style="color:#f59e0b;">⏱️ Rate limit exceeded. Please wait a moment and try again.</span>';
+          return;
+        }
+        
+        if (!res.ok) {
+          const errorData = await res.json().catch(() => ({}));
+          const errorMessage = errorData.message || `HTTP ${res.status}: ${res.statusText}`;
+          showNotification(`❌ API Error: ${errorMessage}`, 'error', 6000);
+          document.getElementById('judgeResult').innerHTML = 
+            `<span style="color:#ef4444;">🚨 API Error: ${errorMessage}</span>`;
+          return;
+        }
+        
         const data = await res.json();
         document.getElementById('judgeResult').innerHTML = renderJudge(data);
       } catch (error) {
+        console.error('Request failed:', error);
+        showNotification('🔌 Connection failed. Please check your internet and try again.', 'error', 6000);
         document.getElementById('judgeResult').innerHTML = '<span style="color:#ef4444;">🚨 Connection error. Please try again!</span>';
       }
     }

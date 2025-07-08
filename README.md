@@ -19,7 +19,9 @@ This project contains a fine-tuned GPT-2 model that suggests potential domain na
 domain_suggestion/
 ├── scripts/
 │   ├── api.py                 # FastAPI backend for serving suggestions
-│   └── dataset_creation.py    # Script to generate training data
+│   ├── dataset_creation.py    # Script to generate training data
+│   ├── eval_llm_judge.py     # LLM-based evaluation system
+│   └── train_gpt2.py         # Model training script
 ├── data/                      # Folder with generated and training data
 │   ├── generated_data.json    # Example generated data file
 │   └── synthetic_dataset_v1   # Main training data
@@ -30,12 +32,27 @@ domain_suggestion/
 │   ├── tokenizer_config.json
 │   ├── tokenizer.json         # Optional, added if tokenizer is fast-compatible
 │   └── pytorch_model.bin      # Main model weights
-├── docs/                      # UI and documentation files
-│   └── index.html             # Main UI file
+├── docs/                      # UI and comprehensive documentation
+│   ├── index.html             # Main UI file
+│   ├── dataset_methodology.md # Dataset creation methodology
+│   ├── evaluation_methodology.md # Evaluation framework details
+│   ├── model_refinement_strategy.md # Improvement roadmap
+│   └── technical_implementation.md # Complete technical guide
 ├── notebooks/                 # Jupyter notebooks for experiments and training
-│   └── gpt2_model_training.ipynb  # Notebook for training the GPT-2 model
+│   ├── 02_edge_case_analysis.ipynb # Failure analysis
+│   └── gpt2_model_training.ipynb   # Main training notebook
 └── README.md
 ```
+
+## 📚 Documentation Overview
+
+This project includes comprehensive documentation covering all aspects of development and deployment:
+
+- **[Project Status & Roadmap](docs/project_status.md)**: Current implementation status and development priorities
+- **[Dataset Methodology](docs/dataset_methodology.md)**: Detailed explanation of dataset creation, quality assurance, and improvement strategies
+- **[Evaluation Framework](docs/evaluation_methodology.md)**: Complete evaluation rationale, metrics, and validation approaches
+- **[Model Refinement Strategy](docs/model_refinement_strategy.md)**: Systematic improvement plan with implementation roadmap
+- **[Technical Implementation](docs/technical_implementation.md)**: Complete code architecture, training pipeline, and deployment guide
 
 ## 🧠 Model Training
 
@@ -63,11 +80,13 @@ Key hyperparameters:
 - Synthetic dataset with 1000+ business descriptions
 - Diverse business categories (tech, retail, services, etc.)
 - Structured format with domain-business pairs
+- **📋 [Detailed Dataset Methodology](docs/dataset_methodology.md)**
 
 **Baseline Model Selection:**
 - Base model: GPT-2 (124M parameters)
 - Fine-tuning approach: Causal language modeling
 - Evaluation metrics: Relevance, brandability, safety scores
+- **🔧 [Complete Technical Implementation](docs/technical_implementation.md)**
 
 ### Edge Case Analysis
 
@@ -99,11 +118,20 @@ Our analysis (see `notebooks/02_edge_case_analysis.ipynb`) revealed several fail
 - Evaluates relevance, brandability, and safety
 - Cross-validation with human evaluators
 - See `scripts/eval_llm_judge.py` for implementation
+- **📈 [Comprehensive Evaluation Methodology](docs/evaluation_methodology.md)**
 
 **Quantified Results:**
 - Initial model accuracy: 72%
 - Post-filtering accuracy: 89%
 - User satisfaction score: 8.1/10
+
+### Improvement Roadmap
+
+**Current Development Areas:**
+- Dataset expansion and quality enhancement
+- Advanced model architectures and training techniques
+- Enhanced filtering and post-processing pipelines
+- **🚀 [Model Refinement Strategy](docs/model_refinement_strategy.md)**
 
 ## 🧪 Example Usage
 
