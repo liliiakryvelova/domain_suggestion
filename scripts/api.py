@@ -64,7 +64,15 @@ def _load_model():
                 source, token=HF_TOKEN if is_hub else None, trust_remote_code=False
             )
             model = AutoModelForCausalLM.from_pretrained(
-                source, token=HF_TOKEN if is_hub else None
+                source,
+                token=HF_TOKEN if is_hub else None,
+                # Render free/Starter tiers have only 512 MiB RAM: fp32
+                # weights (~500 MB) OOM the instance during load. fp16
+                # halves weights to ~250 MB; GPT-2 generation quality is
+                # roughly unchanged. low_cpu_mem_usage avoids a second
+                # full fp32 copy in RAM during loading.
+                torch_dtype=torch.float16,
+                low_cpu_mem_usage=True,
             )
             model.to(device)
             logger.info(f"✅ Model loaded successfully ({label}) on {device}")
@@ -157,11 +165,16 @@ def generate_domains_api(req: DomainRequest):
             "message": "Request contains inappropriate content"
         }
 
-    prompt = (
-        f"Suggest {req.num_domains} creative, short, and brandable domain names "
-        f"(ending with .com, .org, or .net) for a business: {req.business_description}. "
-        "Only return the domain names, separated by commas."
-    )
+    # Training-format prompt (see docs/technical_implementation.md §4):
+    # training examples were
+    # "Generate domain names for: {desc}\nSuggestions: {list}<|endoftext|>".
+    # The old instruction-style prompt shared no surface form with the
+    # training data, so the fine-tuned model fell back to generic GPT-2
+    # continuation (off-topic gibberish). Keep the prompt EXACTLY in
+    # training format; the model continues after "Suggestions: " with a
+    # comma-separated list, then EOS.
+    # Same prompt / sampling as gradio-space/app.py.
+    prompt = f"Generate domain names for: {req.business_description}\nSuggestions: "
     try:
         inputs = tokenizer(prompt, return_tensors="pt").to(device)
         outputs = model.generate(
@@ -185,6 +198,10 @@ def generate_domains_api(req: DomainRequest):
         domains_text = decoded[len(prompt):].strip()
     else:
         domains_text = decoded.strip()
+
+    # The list ends at EOS or at the first newline; anything after a
+    # newline is the model wandering into a new (untrained) continuation.
+    domains_text = domains_text.split("\n")[0].strip()
 
     logger.info(f"🧠 Model output: {domains_text}")
 
