@@ -117,7 +117,7 @@ def main():
             try:
                 scores = judge_domain(d, desc)
             except Exception as e:
-                print(f"🛑 Error judging domain {d}: {e}")
+                print(f"🛑 Error judging domain '{d}': {e}")
                 scores = {"relevance": None, "brandability": None, "safe": None}
 
             eval_results.append({
