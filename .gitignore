@@ -115,3 +115,6 @@ Thumbs.db
 *.bak
 *.swp
 *.tmp
+
+# Local fine-tuned model (~500 MB, downloaded at runtime / from HF, not committed)
+local_model_finetuned/
