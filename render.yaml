@@ -1,0 +1,19 @@
+# Render Blueprint for the Domain Suggester API (FastAPI).
+# Deploy: render.com → New → Blueprint → connect repo liliiakryvelova/domain_suggestion.
+# This file must be on the repo's main branch before the Blueprint deploy.
+# OPENAI_API_KEY is optional: leave it unset and /generate-domains still works;
+# /judge-domain returns an honest 503 without it.
+services:
+  - type: web
+    name: domain-suggester-api
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements-api.txt
+    startCommand: uvicorn scripts.api:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.0
+      - key: OPENAI_API_KEY
+        sync: false
