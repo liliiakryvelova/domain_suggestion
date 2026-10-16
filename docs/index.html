@@ -130,6 +130,46 @@
       font-weight: 300;
       transition: color 0.3s ease;
     }
+
+    .live-demo {
+      text-align: center;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5em 1.25em;
+      margin-bottom: 1em;
+      background: var(--bg-result);
+    }
+
+    .live-demo a {
+      display: inline-block;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 1em 2em;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .live-demo a:hover {
+      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    }
+
+    .live-demo p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 1em;
+    }
+
+    .live-demo code {
+      color: var(--text-secondary);
+    }
     
     h2 {
       color: var(--text-primary);
@@ -455,6 +495,11 @@
   <div class="container">
     <h1>AI Domain Genius</h1>
     <p class="subtitle">Powered by fine-tuned GPT-2 • Created by Liliia Kryvelova</p>
+
+    <div class="live-demo">
+      <a href="https://huggingface.co/spaces/Octopus87/domain-suggester" target="_blank" rel="noopener">🤗 Try the live demo on Hugging Face</a>
+      <p>Generation runs on the Hugging Face Space — no setup needed. The forms below call a local API at <code>localhost:8000</code> (run <code>uvicorn scripts.api:app</code> to use them).</p>
+    </div>
     
     <h2>🚀 Generate Domains</h2>
     <label for="desc">Business Description</label>
